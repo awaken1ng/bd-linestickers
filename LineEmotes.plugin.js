@@ -558,13 +558,12 @@ lineemotes.prototype.observer = function (mutation) {
             for (var node in nodes) {
                 if (nodes.hasOwnProperty(node)) {
                     var elem = nodes[node].parentElement;
-                    if (elem && elem.classList.contains('edited')) {
-						lineemotes.inject(elem)
-		
-                     
-                    } else {
-						lineemotes.inject(nodes[node])
-						           
+					
+                    if (elem && elem.classList.contains('edited')) { lineemotes.inject(elem); }
+                    else { lineemotes.inject(nodes[node]); }
+					
+                    if (elem && elem.tagName == "TEXTAREA" && elem.style.display == "none") {
+                    	elem.style.display = "";
                     }
                 }
             }
