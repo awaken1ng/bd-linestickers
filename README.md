@@ -92,3 +92,13 @@ Using a file archiver of your choice, open the zip file, find the sticker with t
 Now you have pack ID, first sticker ID and base prefix, add the pack
 
 *Note: assuming length is 40, if the zip file doesn't contain 83 files (40 stickers, 40 thumbnails, 2 category icons, 1 metadata file), set the length accordingly*
+
+## Possible errors
+- Error while adding a sticker
+
+  Can appear as `Uncaught SyntaxError: missing ) after argument list` in the console
+  
+  Make extra sure the wrapped name doesn't have any extra quotes, for example
+  <br/>`lineemotes.appendPack(""The Fruit of Grisaia" SD sticker", 1120373, 4917422, 1, 40)`,
+  <br/>either remove them all, making it `lineemotes.appendPack("The Fruit of Grisaia SD sticker", 1120373, 4917422, 1, 40)`
+  <br/>or escape them `lineemotes.appendPack("\"The Fruit of Grisaia\" SD sticker", 1120373, 4917422, 1, 40)`
