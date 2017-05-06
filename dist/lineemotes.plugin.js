@@ -271,7 +271,7 @@ lineemotes.menu.buildContainer = function () {
 };
 
 lineemotes.menu.rebuild = function () {
-    lineemotes.log('Rebuilding container, please close and open emote menu to see the changes');
+    lineemotes.log('Rebuilding container');
     quickEmoteMenu.lsContainer = this.buildContainer();
 };
 
@@ -362,7 +362,7 @@ lineemotes.menu.getSize = function(width, height) {
 };
 
 lineemotes.menu.resize = function() {
-    if ($('#bda-qem-line-container').length === 0) return;
+    if (!lineemotes.menu.open()) return;
     var width = bdPluginStorage.get('lineemotes', 'width');
     var height = bdPluginStorage.get('lineemotes', 'height');
 
@@ -394,6 +394,8 @@ lineemotes.menu.removePack = function(id) {
 };
 
 lineemotes.menu.appendPack = function(id) {
+    if (!lineemotes.menu.open()) return;
+    lineemotes.log('Appending a pack to the current container');
     // append the pack to the current container
     var pack = lineemotes.pack.wrapPack(id);
     $('#bda-qem-line-container .emote-menu-inner').append(pack);
@@ -465,6 +467,13 @@ lineemotes.menu.appendPack = function(id) {
                 .focus();
         }
     });
+};
+
+lineemotes.menu.open = function() {
+    if ($(`#bda-qem-line-container`).length === 1) 
+        return true;
+    else 
+        return false;
 };
 
 
@@ -579,7 +588,9 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     
     var stickerpack = pack.getPack(title, stickerid, length);
     storage.pushPack(stickerpack);
-    lineemotes.menu.rebuild()
+    lineemotes.menu.rebuild();
+    lineemotes.menu.appendPack(stickerid);
+ 
     return true;
 };
 
@@ -760,7 +771,7 @@ lineemotes.storage.pushPack = function (pack) {
         var storage = this.get();
         storage.push(pack);
         this.set(storage);
-        log(`Successfully added pack '${pack['title']}'`);
+        log(`Successfully added pack '${pack['title']}' to the storage`);
         return true;
     } else {
         log('Pack is already in storage, aborting');
