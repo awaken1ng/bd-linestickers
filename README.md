@@ -73,6 +73,17 @@ Just count them =P
 
 Default length is 40, which is the standard length for most sticker packs, however, some packs, usually animated, can be an exception to this
 
+## Resizing the window
+
+You can resize the Line tab using the following commands in console:
+
+`lineemotes.menu.setWidth(width)`
+
+`lineemotes.menu.setHeight(height)`
+
+`lineemotes.menu.setSize(width, height)`
+
+
 ## Adding unavailable stickers
 ![](https://camo.githubusercontent.com/6a6c9d4febc36ae58e9e0f7577aab1756a020f70/68747470733a2f2f696d616765732d312e646973636f72646170702e6e65742f2e654a774e7955734f7779414d414e47376341444d78355130743045456b61674a52746852466c5876586d6235357176756361705637534b64563444743445786a30797730556932364574577a704836777a6e5242456b6c3576306f54427563746f6e50653277556a786f426d556c6a4d793367625a2d453948397a74302d687075726571666e384642434c532e72394b32513273713566664d526b786a6f466175426d7a30663755)
 
