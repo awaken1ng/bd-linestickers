@@ -117,7 +117,6 @@ lineemotes.categories.init = function () {
             $('#line-add-title').val('');
             $('#line-add-length').val('');
             $('#line-add-id').val('');
-            lineemotes.menu.appendPack(id);
         }
     });
 };
