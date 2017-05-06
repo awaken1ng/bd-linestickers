@@ -9,7 +9,7 @@ Extends BetterDiscord emote menu to add a tab with Line stickers to it
 * Install [BetterDiscord](https://betterdiscord.net/)
 * Install the plugin
 	* Open the folder at `C:\Users\<user>\AppData\Roaming\BetterDiscord\plugins` by navigating there via File Explorer of your choice
-  * Drop the plugin [`LineEmotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/LineEmotes.plugin.js) off there
+  * Drop the plugin [`lineemotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/dist/lineemotes.plugin.js) off there
 *  Restart Discord (*Ctrl + R or a method of your choice*)
 * Make sure the plugin is enabled
   * Open `User Settings` - `BetterDiscord` - `Plugins`, you should see plugin in the list, enable it by checking the box
