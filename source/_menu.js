@@ -288,7 +288,7 @@ lineemotes.menu.appendPack = function(id) {
             header.find('input')
                 .on('blur', (event) => {
                     save(event);
-                    bar.removeClass('visible') 
+                    bar.removeClass('visible');
                 })
                 .on('keydown', (event) => {
                     if ((event.key === 'Escape') || (event.key ==='Enter')) {

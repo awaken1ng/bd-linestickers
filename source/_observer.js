@@ -10,22 +10,21 @@ lineemotes.prototype.observer = function (mutation) {
                 for (var node in nodes) {
                     if (nodes.hasOwnProperty(node)) {
                         var element = nodes[node].parentElement;
-                        
-                        // dont hide the sticker url in code blocks
-                        if (element && (element.tagName === 'CODE'))
-                            return;
-
-                        if (element && element.classList.contains('edited')) { 
-                            // if message with a sticker was edited, apply the sticker url hide
-                            this.observer.inject(element); 
-                        } else {
-                            // apply the sticker url hide
-                            this.observer.inject(nodes[node]); 
-                        }
-
-                        // if message is being edited, unhide the text
-                        if (element && element.tagName == "TEXTAREA" && element.style.display == "none") {
-                            element.style.display = "";
+                        if (element) {
+                            // skip code blocks
+                            if (element.tagName !== 'CODE') {
+                                if (element.classList.contains('edited')) { 
+                                    // if message with a sticker was edited, apply the sticker url hide
+                                    this.observer.inject(element); 
+                                } else {
+                                    // apply the sticker url hide
+                                    this.observer.inject(nodes[node]); 
+                                }
+                                }
+                                // if message is being edited, unhide the text
+                                if (element.tagName == "TEXTAREA" && element.style.display == "none") {
+                                    element.style.display = "";
+                            }
                         }
                     }
                 }
