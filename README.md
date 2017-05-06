@@ -46,6 +46,12 @@ There are two ways of adding stickers:
 * In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, length)``
 
 
+### Getting stickers
+
+You can find them on [Line Store](https://store.line.me/home/en)
+
+*No, you don't need to buy them*
+
 ### Getting sticker's title, ID and length
 
 #### Grease/Tampermonkey user script
