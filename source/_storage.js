@@ -28,7 +28,7 @@ lineemotes.storage.pushPack = function (pack) {
         var storage = this.get();
         storage.push(pack);
         this.set(storage);
-        log(`Successfully added pack '${pack['title']}'`);
+        log(`Successfully added pack '${pack['title']}' to the storage`);
         return true;
     } else {
         log('Pack is already in storage, aborting');

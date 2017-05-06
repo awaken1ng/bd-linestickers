@@ -39,7 +39,9 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     
     var stickerpack = pack.getPack(title, stickerid, length);
     storage.pushPack(stickerpack);
-    lineemotes.menu.rebuild()
+    lineemotes.menu.rebuild();
+    lineemotes.menu.appendPack(stickerid);
+ 
     return true;
 };
 
