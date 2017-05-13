@@ -50,10 +50,13 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     }
     
     var stickerpack = pack.getPack(title, stickerid, length);
-    storage.pushPack(stickerpack);
-    lineemotes.menu.rebuild();
-    lineemotes.menu.appendPack(stickerid);
- 
+    if (lineemotes.storage.getPack(stickerid) === null) {
+        storage.pushPack(stickerpack);
+        lineemotes.menu.rebuild();
+        lineemotes.menu.appendPack(stickerid);
+    } else {
+        log('Pack already exists in storage');
+    }
     return true;
 };
 
