@@ -115,7 +115,7 @@ lineemotes.categories.init = function () {
             var id = $('#line-add-id').val().trim();
             lineemotes.appendPack(title, id, length);
             $('#line-add-title').val('');
-            $('#line-add-length').val('');
+            $('#line-add-length').val(40);
             $('#line-add-id').val('');
         }
     });

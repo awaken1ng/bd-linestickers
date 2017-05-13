@@ -39,7 +39,7 @@ lineemotes.log = (message) => console.log(`[${lineemotes.prototype.getName()}] $
 
 lineemotes.prototype.getName = () => "Line Stickers";
 lineemotes.prototype.getDescription = () => "Extends emote menu to add Line stickers.";
-lineemotes.prototype.getVersion = () => "0.6.2";
+lineemotes.prototype.getVersion = () => "0.6.2a";
 lineemotes.prototype.getAuthor = () => "Awakening";
 lineemotes.categories = function() {}
 
@@ -158,7 +158,7 @@ lineemotes.categories.init = function () {
             var id = $('#line-add-id').val().trim();
             lineemotes.appendPack(title, id, length);
             $('#line-add-title').val('');
-            $('#line-add-length').val('');
+            $('#line-add-length').val(40);
             $('#line-add-id').val('');
         }
     });
