@@ -39,5 +39,5 @@ lineemotes.log = (message) => console.log(`[${lineemotes.prototype.getName()}] $
 
 lineemotes.prototype.getName = () => "Line Stickers";
 lineemotes.prototype.getDescription = () => "Extends emote menu to add Line stickers.";
-lineemotes.prototype.getVersion = () => "0.6.1";
+lineemotes.prototype.getVersion = () => "0.6.2";
 lineemotes.prototype.getAuthor = () => "Awakening";
