@@ -39,12 +39,14 @@ There are two ways of adding stickers:
 
 * Enter the title, length (amount of stickers in a pack) and the ID of the first sticker and press `Add` button
 
+  ![](https://camo.githubusercontent.com/876e2e35b8f92022667d8c4e52dd1d7817b9a6a6/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3331323734363535393937343637303334362f756e6b6e6f776e2e706e67)
+
 ### Via Discord console
 
 * Open the developer tools by pressing `Ctrl + Shift + I`
 
 * In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, length)``
-
+<br> *for example ``lineemotes.appendPack(`Miko sister of fox`, 1133826, 40)``*
 
 ### Getting stickers
 
