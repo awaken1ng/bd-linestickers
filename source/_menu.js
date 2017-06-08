@@ -72,6 +72,8 @@ lineemotes.menu.init = function () {
             }
             var ta = $(".channel-textarea-inner textarea");
             ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+            // force the textarea to resize if needed
+            ta[0].dispatchEvent(new Event('input', { bubbles: true }));
         });
         lineemotes.preview.init();
         lineemotes.categories.init();
