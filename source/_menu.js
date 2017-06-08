@@ -65,7 +65,7 @@ lineemotes.menu.init = function () {
             // find out what tab we're dealing with
             if ($(this).parent().parent().attr("class") === 'line-pack-stickers') {
                 // if dealing with line stickers tab, grab src
-                var emote = $(this).attr("src");
+                var emote = $(this).attr("src") + '\n';
             } else {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
