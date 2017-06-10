@@ -1,7 +1,10 @@
 
 
 lineemotes.prototype.observer = function (mutation) {
-    var status = lineemotes.prototype.observer.status.current;
+    var status = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs');
+    if (status === null) {
+        status = false;
+    }
     if (status === true) {
             for (var i = 0; i < mutation.addedNodes.length; ++i) {
             var next = mutation.addedNodes.item(i);
@@ -47,12 +50,14 @@ lineemotes.prototype.observer.status.set = function(value) {
     }
 }
 
+/*
 lineemotes.prototype.observer.status.read = function() {
     this.current = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs');
     if (this.current === null) {
         this.current = false;
     }
 }
+*/
 
 lineemotes.prototype.observer.getNodes = function (node) {
     var next;

@@ -9,7 +9,7 @@ lineemotes.prototype.load = function () {
 lineemotes.prototype.start = function () {
     lineemotes.log('Initializing');
     lineemotes.menu.init();
-    lineemotes.prototype.observer.status.read();
+    /*lineemotes.prototype.observer.status.read();*/
 };
 
 
@@ -30,8 +30,47 @@ lineemotes.prototype.onSwitch = function () {
     //called when a server or channel is switched
 };
 
+lineemotes.prototype.initSettingsPanel = function() {
+    console.log('test');
+    $('#line-settings-hideurl').click(() => {
+        console.log(this);
+    });
+};
+
+lineemotes.prototype.settings = function () {};
+lineemotes.prototype.settings.toggleHide = function () {
+    console.log('toggling hide');
+    if (document.getElementById('line-settings-hideurl').checked) { 
+        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', true); 
+    } else { 
+        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', false); 
+    }
+};
+    
 lineemotes.prototype.getSettingsPanel = function () {
-    //return "<h3>Settings Panel</h3>";
+    console.log(this);
+    
+    let checked = ''
+    if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs') == true) { checked = 'checked=""'; }
+    
+    let toggle = document.createElement('label');
+    toggle.classList.add('ui-switch-wrapper', 'ui-flex-child');
+    toggle.setAttribute('style', 'flex:0 0 auto;');
+    
+    let input = document.createElement('input');
+    input.classList.add('ui-switch-checkbox');
+    input.setAttribute('id', 'line-settings-hideurl');
+    input.setAttribute('type', 'checkbox');
+    if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs') == true) { input.setAttribute('checked', ''); }
+    input.setAttribute('onclick', 'lineemotes.prototype.settings.toggleHide()')
+    
+    let div = document.createElement('div');
+    div.classList.add('ui-switch');
+    
+    toggle.appendChild(input);
+    toggle.appendChild(div);
+
+    return "<div style='display:flex;'><h3 style='color:#b0b6b9;'>Hide sticker URL on client side (others will see it, switch text channel or server for the change to apply)</h3>" + toggle.outerHTML + "</div>";
 };
 
 //logger function, outputs console message in '[Line Stickers] <message>' format
