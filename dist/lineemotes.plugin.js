@@ -70,7 +70,7 @@ lineemotes.prototype.getSettingsPanel = function () {
     toggle.appendChild(input);
     toggle.appendChild(div);
 
-    return "<div style='display:flex;'><h3 style='color:#b0b6b9;'>Hide sticker URL on client side (others will see it, switch text channel or server for the change to apply)</h3>" + toggle.outerHTML + "</div>";
+    return "<div style='display:flex;'><h3 style='color:#b0b6b9;'>Hide sticker URL on client side (others will still see it, switch text channel or server for the change to apply)</h3>" + toggle.outerHTML + "</div>";
 };
 
 //logger function, outputs console message in '[Line Stickers] <message>' format
