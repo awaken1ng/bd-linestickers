@@ -1,3 +1,5 @@
+_Feel free to [join the Discord server](https://discordapp.com/invite/wCX6K8q) and ping me if you have any questions or [open an Issue on GitHub](https://github.com/awaken1ng/bd-linestickers/issues)_
+
 # BetterDiscord Line Stickers Plugin
 
 Extends BetterDiscord emote menu to add a tab with Line stickers to it
