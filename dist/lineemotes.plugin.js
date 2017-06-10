@@ -9,7 +9,6 @@ lineemotes.prototype.load = function () {
 lineemotes.prototype.start = function () {
     lineemotes.log('Initializing');
     lineemotes.menu.init();
-    /*lineemotes.prototype.observer.status.read();*/
 };
 
 
@@ -30,13 +29,6 @@ lineemotes.prototype.onSwitch = function () {
     //called when a server or channel is switched
 };
 
-lineemotes.prototype.initSettingsPanel = function() {
-    console.log('test');
-    $('#line-settings-hideurl').click(() => {
-        console.log(this);
-    });
-};
-
 lineemotes.prototype.settings = function () {};
 lineemotes.prototype.settings.toggleHide = function () {
     console.log('toggling hide');
@@ -48,8 +40,6 @@ lineemotes.prototype.settings.toggleHide = function () {
 };
     
 lineemotes.prototype.getSettingsPanel = function () {
-    console.log(this);
-    
     let checked = ''
     if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs') == true) { checked = 'checked=""'; }
     
@@ -566,15 +556,6 @@ lineemotes.prototype.observer.status.set = function(value) {
         lineemotes.log('Unknown value passed while setting observer status')
     }
 }
-
-/*
-lineemotes.prototype.observer.status.read = function() {
-    this.current = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs');
-    if (this.current === null) {
-        this.current = false;
-    }
-}
-*/
 
 lineemotes.prototype.observer.getNodes = function (node) {
     var next;

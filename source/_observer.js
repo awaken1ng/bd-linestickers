@@ -50,15 +50,6 @@ lineemotes.prototype.observer.status.set = function(value) {
     }
 }
 
-/*
-lineemotes.prototype.observer.status.read = function() {
-    this.current = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs');
-    if (this.current === null) {
-        this.current = false;
-    }
-}
-*/
-
 lineemotes.prototype.observer.getNodes = function (node) {
     var next;
     var nodes = [];
