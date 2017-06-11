@@ -32,31 +32,31 @@ lineemotes.prototype.onSwitch = function () {
 lineemotes.prototype.settings = function () {};
 lineemotes.prototype.settings.toggleHide = function () {
     console.log('toggling hide');
-    if (document.getElementById('line-settings-hideurl').checked) { 
-        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', true); 
-    } else { 
-        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', false); 
+    if (document.getElementById('line-settings-hideurl').checked) {
+        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', true);
+    } else {
+        bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', false);
     }
 };
-    
+
 lineemotes.prototype.getSettingsPanel = function () {
     let checked = ''
     if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs') == true) { checked = 'checked=""'; }
-    
+
     let toggle = document.createElement('label');
     toggle.classList.add('ui-switch-wrapper', 'ui-flex-child');
     toggle.setAttribute('style', 'flex:0 0 auto;');
-    
+
     let input = document.createElement('input');
     input.classList.add('ui-switch-checkbox');
     input.setAttribute('id', 'line-settings-hideurl');
     input.setAttribute('type', 'checkbox');
     if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs') == true) { input.setAttribute('checked', ''); }
     input.setAttribute('onclick', 'lineemotes.prototype.settings.toggleHide()')
-    
+
     let div = document.createElement('div');
     div.classList.add('ui-switch');
-    
+
     toggle.appendChild(input);
     toggle.appendChild(div);
 
@@ -68,8 +68,9 @@ lineemotes.log = (message) => console.log(`[${lineemotes.prototype.getName()}] $
 
 lineemotes.prototype.getName = () => "Line Stickers";
 lineemotes.prototype.getDescription = () => "Extends emote menu to add Line stickers.";
-lineemotes.prototype.getVersion = () => "0.6.3";
+// lineemotes.prototype.getVersion = () => "0.6.3";
 lineemotes.prototype.getAuthor = () => "Awakening";
+
 lineemotes.categories = function() {}
 
 lineemotes.categories.buildContainer = function() {
@@ -1151,3 +1152,4 @@ var stylesheet = `#bda-qem-line-container {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
+lineemotes.prototype.getVersion = () => "0.6.3";

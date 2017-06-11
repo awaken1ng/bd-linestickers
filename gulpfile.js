@@ -1,3 +1,4 @@
+const package = require('./package.json');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat-util');
@@ -16,6 +17,7 @@ gulp.task('build', ['build:css'], function (callback) {
     var tasks = [
         gulp.src(entry),
         concat(name),
+        concat.footer(`lineemotes.prototype.getVersion = () => "${package.version}";`),
         gulp.dest(build)
     ]
     if (deploy) {
