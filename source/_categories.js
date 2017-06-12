@@ -3,31 +3,31 @@ lineemotes.categories = function() {}
 lineemotes.categories.buildContainer = function() {
     var container = '';
     var categories = '';
-    
-    
+
+
     var storage = lineemotes.storage.get();
     if (storage) {
         for (var pack = 0; pack < storage.length; ++pack) {
             categories += `<div class="item" data-id="${storage[pack]['starting_id']}" onclick="$('#bda-qem-line-container .line-pack')[${pack}].scrollIntoView()" style='background-image: url("https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/${storage[pack]['starting_id']}/android/sticker.png;compress=true")'></div>`;
         }
     }
-    
+    var localization_strings = lineemotes.prototype.getLocalizationStrings();
     var numbersOnly = "return event.charCode >= 48 && event.charCode <= 57";
     container += `
-<div class="add-form" style="display: inline-flex; opacity: 0; pointer-events: none;">
-    <div class="labels" style="margin-right: 10px; font-size: 14px; line-height: 17px;">
-        <label for="line-add-title">Title</label><br>
-        <label for="line-add-length">Length</label><br>
-        <label for="line-add-id">First sticker ID</label>
+<div class="add-form" style="opacity: 0; pointer-events: none;">
+    <div class="labels">
+        <label for="line-add-title">${localization_strings['addform-title']}</label>
+        <label for="line-add-length">${localization_strings['addform-length']}</label>
+        <label for="line-add-id">${localization_strings['addform-id']}</label>
     </div>
-    <div class="inputs" style="padding-top: 0.5px";>
-        <input id="line-add-title" placeholder="Title"><br>
-        <input id="line-add-length" onkeypress="${numbersOnly}" placeholder="Length" value="40"><br>
-        <input id="line-add-id" onkeypress="${numbersOnly}" placeholder="First sticker ID">
+    <div class="inputs">
+        <input id="line-add-title" placeholder="${localization_strings['addform-title']}">
+        <input id="line-add-length" onkeypress="${numbersOnly}" placeholder="${localization_strings['addform-length']}" value="40">
+        <input id="line-add-id" onkeypress="${numbersOnly}" placeholder="${localization_strings['addform-id']}">
     </div>
-    
-    <button type="button" class="line-add-button ui-button filled brand small" style="margin-left: 10px; width: 42px; height: auto; top: 1px; padding: 0px; background-color: #98aab6;">
-        <div class="ui-button-contents">Add</div>
+
+    <button type="button" class="line-add-button ui-button filled brand small">
+        <div class="ui-button-contents">${localization_strings['addform-add']}</div>
     </button>
 </div>
 <div class="categories-container">
@@ -62,13 +62,13 @@ lineemotes.categories.init = function () {
             $('#bda-qem-line-container .add-form').css('pointer-events', 'unset');
         }
     });
-    
+
     var state = {
         'id': false,
         'length': true,
         'title': false
     };
-    
+
     function validate() {
         function clearAndSet(target, state) {
             $(target).removeClass('valid');
@@ -83,11 +83,11 @@ lineemotes.categories.init = function () {
             return false;
         }
     }
-    
+
     $(`#line-add-title`).off();
     $(`#line-add-length`).off();
     $(`#line-add-id`).off();
-    
+
     $(`#line-add-title`).keyup((event) => {
         if ($(event.target).val()) state['title'] = true;
         else state['title'] = false;
@@ -103,7 +103,7 @@ lineemotes.categories.init = function () {
         else state['id'] = false;
         validate();
     });
- 
+
     $('#bda-qem-line-container .line-add-button').off('click');
     $('#bda-qem-line-container .line-add-button').mouseenter((event) => {
         validate();

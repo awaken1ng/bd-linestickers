@@ -2,11 +2,13 @@ _Feel free to [join the Discord server](https://discordapp.com/invite/wCX6K8q) a
 
 [日本語の解説](README_ja.md)
 
-# BetterDiscord Line Stickers Plugin
+# BetterDiscord LINE Stickers Plugin
 
-Extends BetterDiscord emote menu to add a tab with Line stickers to it
-![](https://camo.githubusercontent.com/0378294c045e60db0208f807a13c93e07fa8b36d/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303137363533333937303934343030382f756e6b6e6f776e2e706e67)
+Extends BetterDiscord emote menu to add a tab with LINE stickers to it
+[![](https://camo.githubusercontent.com/6b145ba99071dd660d1ac866cc507e74de704874/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363635363935343137393538352f756e6b6e6f776e2e706e67)]()
+[![](https://camo.githubusercontent.com/84a146ee8b202df573c4c4303759ea19a8b150ee/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363637393032303431323932382f756e6b6e6f776e2e706e67)]()
 
+*to enable Dark theme, enable Dark mode in BetterDiscord settings*
 
 ## Installation
 
@@ -17,10 +19,16 @@ Extends BetterDiscord emote menu to add a tab with Line stickers to it
 *  Restart Discord (*Ctrl + R or a method of your choice*)
 * Make sure the plugin is enabled
   * Open `User Settings` - `BetterDiscord` - `Plugins`, you should see plugin in the list, enable it by checking the box
-* Open the Emote menu, you should see a **Line** tab in there
+* Open the Emote menu, you should see a **LINE** tab in there
 
 
 ## Adding stickers
+
+### Getting stickers
+
+You can find them on [LINE Store](https://store.line.me/home/en)
+
+*No, you don't need to buy them*
 
 To add a sticker pack you'll need:
 * it's title
@@ -35,15 +43,15 @@ There are two ways of adding stickers:
 
 * Open the tab by pressing the plus sign at the bottom
 
-  ![](https://camo.githubusercontent.com/b2b1760c891150672be63302950331d40bbde6a4/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138313630313130313437393933372f756e6b6e6f776e2e706e67)
+  ![](https://camo.githubusercontent.com/c1f110a58855ef1f197fae9f3fc5f17feee2ba79/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630313937353139373330323738352f756e6b6e6f776e2e706e67)
 
 * The following form should show up:
 
-  ![](https://camo.githubusercontent.com/b6b1383a84d7cfd45707c273b196b3ab2fa74ca6/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138313936343537313231333832342f756e6b6e6f776e2e706e67)
+  ![](https://camo.githubusercontent.com/b679d291fabdb1fc8a6ce36917d68275f31a963c/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323130313939313234333737382f756e6b6e6f776e2e706e67)
 
 * Enter the title, length (amount of stickers in a pack) and the ID of the first sticker and press `Add` button
 
-  ![](https://camo.githubusercontent.com/876e2e35b8f92022667d8c4e52dd1d7817b9a6a6/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3331323734363535393937343637303334362f756e6b6e6f776e2e706e67)
+  ![](https://camo.githubusercontent.com/756765fef0bc6a58ea242015d0bab7481c210e5a/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323332323536313137313435382f756e6b6e6f776e2e706e67)
 
 ### Via Discord console
 
@@ -52,16 +60,11 @@ There are two ways of adding stickers:
 * In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, length)``
 <br> *for example ``lineemotes.appendPack(`Miko sister of fox`, 1133826, 40)``*
 
-### Getting stickers
-
-You can find them on [Line Store](https://store.line.me/home/en)
-
-*No, you don't need to buy them*
 
 ### Getting sticker's title, ID and length
 
 #### Grease/Tampermonkey user script
-![](https://camo.githubusercontent.com/90e0741670663dbc6e414478d793b5a50ffbb2cb/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138363631353934313336353736302f756e6b6e6f776e2e706e67)
+[![](https://camo.githubusercontent.com/90e0741670663dbc6e414478d793b5a50ffbb2cb/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138363631353934313336353736302f756e6b6e6f776e2e706e67)](https://greasyfork.org/en/scripts/23630)
 
 If you're using [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) you can [download a user script](https://greasyfork.org/en/scripts/23630) that will show you the title, first sticker ID, amount of stickers and append string on the page
 
@@ -87,7 +90,7 @@ Default length is 40, which is the standard length for most sticker packs, howev
 
 ## Resizing the window
 
-You can resize the Line tab using the following commands in console:
+You can resize the LINE tab using the following commands in console:
 
 `lineemotes.menu.setWidth(width)`
 
@@ -95,9 +98,10 @@ You can resize the Line tab using the following commands in console:
 
 `lineemotes.menu.setSize(width, height)`
 
+*for example `lineemotes.menu.setSize(494, 326)`*
 
 ## Adding unavailable stickers
-![](https://camo.githubusercontent.com/6a6c9d4febc36ae58e9e0f7577aab1756a020f70/68747470733a2f2f696d616765732d312e646973636f72646170702e6e65742f2e654a774e7955734f7779414d414e47376341444d78355130743045456b61674a52746852466c5876586d6235357176756361705637534b64563444743445786a30797730556932364574577a704836777a6e5242456b6c3576306f54427563746f6e50653277556a786f426d556c6a4d793367625a2d453948397a74302d687075726571666e384642434c532e72394b32513273713566664d526b786a6f466175426d7a30663755)
+[![](https://camo.githubusercontent.com/6a6c9d4febc36ae58e9e0f7577aab1756a020f70/68747470733a2f2f696d616765732d312e646973636f72646170702e6e65742f2e654a774e7955734f7779414d414e47376341444d78355130743045456b61674a52746852466c5876586d6235357176756361705637534b64563444743445786a30797730556932364574577a704836777a6e5242456b6c3576306f54427563746f6e50653277556a786f426d556c6a4d793367625a2d453948397a74302d687075726571666e384642434c532e72394b32513273713566664d526b786a6f466175426d7a30663755)](https://store.line.me/stickershop/product/2999/ja)
 
 Some sticker packs might greet you with the message above
 

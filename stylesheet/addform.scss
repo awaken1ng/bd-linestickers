@@ -1,0 +1,52 @@
+#bda-qem-line-container {
+  .add-form {
+    position: absolute;
+    display: flex;
+    bottom: 48px;
+    width: calc(var(--bd-les-width) - 45px);
+    transition: opacity .1s ease-in-out .05s;
+    background: inherit;
+    padding: 15px;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    text-transform: uppercase;
+
+    .labels, .inputs {
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+      font-size: 12px;
+      line-height: 17px;
+
+      input::-webkit-input-placeholder {
+         color: rgba(152, 170, 182, 0.5);
+       }
+      input {
+         border-bottom: solid 1px;
+       }
+      #line-add-title,
+      #line-add-length,
+      #line-add-id {
+        width: 100%;
+        height: 16px;
+      }
+    }
+    .inputs {
+      flex-grow: 1;
+    }
+
+    .line-add-button {
+      top: 1px;
+      width: 42px;
+      height: auto;
+      padding: 0px;
+      border-radius: 3px;
+      background-color: #98aab6;
+    }
+    .line-add-button.invalid:hover {
+      background-color: #ad0000 !important;
+    }
+    .line-add-button.valid:hover {
+      background-color: #15ad00 !important;
+    }
+  }
+}

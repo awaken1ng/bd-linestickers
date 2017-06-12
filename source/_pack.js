@@ -6,7 +6,7 @@ lineemotes.pack.getPack = function (title, stickerid, length) {
         starting_id: Number(stickerid),
         length: Number(length)
     };
-    
+
     return pack;
 };
 
@@ -14,14 +14,14 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     var log = lineemotes.log;
     var storage = lineemotes.storage;
     var pack = lineemotes.pack;
-    
+
     // parsing arguments
     if (typeof title     === 'undefined') { throw 'ParsingError: Title is not defined'; }
     if (typeof stickerid === 'undefined') { throw 'ParsingError: Sticker ID is not a defined'; }
     if (typeof length    === 'undefined') { length = 40; log(`Length is not explicitly defined, defaulting to ${length}`); }
-    
+
     if (typeof title !== 'string') { throw 'ParsingError: Title is not a string'; }
-    if (Number.isInteger(stickerid) === false) { 
+    if (Number.isInteger(stickerid) === false) {
         if (typeof stickerid === 'string') {
             stickerid = parseInt(stickerid, 10);
             if (isNaN(stickerid)) {
@@ -29,11 +29,11 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
             } else {
                 log(`First sticker ID passed as a string, parsed as integer ${stickerid}`);
             }
-        } else { 
+        } else {
             throw 'ParsingError: First sticker ID is not a number nor string';
         }
     }
-    if (Number.isInteger(length) === false) { 
+    if (Number.isInteger(length) === false) {
         if (length === null) {
             length = 40;
             log(`Null length passed, defaulting to ${length}`);
@@ -44,11 +44,11 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
             } else {
                 log(`Length passed as a string, parsed as integer ${length}`);
             }
-        } else { 
+        } else {
             throw 'ParsingError: Length is not a number nor string';
         }
     }
-    
+
     var stickerpack = pack.getPack(title, stickerid, length);
     if (lineemotes.storage.getPack(stickerid) === null) {
         storage.pushPack(stickerpack);
@@ -81,7 +81,7 @@ lineemotes.pack.wrapPack = function (stickerid) {
         <span class="item">
             <span class="icon-edit"></span>
         </span>
-    
+
         <span class="item" style="display: none; text-align: center; width: 30px; vertical-align: middle; line-height: 23.5px; color: #d1d1d1;">
             <span class="icon-edit-len">LEN</span>
         </span>
@@ -107,19 +107,19 @@ lineemotes.editbar.init = function () {
             var header = pack.find('.line-pack-header');
             var value = pack.find('.line-pack-header').text();
             header.html(`<input class="line-edit-input" value="${value}"></input>`);
-            bar.addClass('visible') 
-            
+            bar.addClass('visible')
+
             function save(event) {
                 var value = $(event.target).val();
                 var id = $(event.target.parentNode.parentNode).attr('data-id');
                 lineemotes.storage.renamePack(id, value);
                 $(event.target.parentNode).html(value);
             }
-            
+
             header.find('input')
                 .on('blur', (event) => {
                     save(event);
-                    bar.removeClass('visible') 
+                    bar.removeClass('visible')
                 })
                 .on('keydown', (event) => {
                     if ((event.key === 'Escape') || (event.key ==='Enter')) {
@@ -137,20 +137,21 @@ lineemotes.editbar.init = function () {
 // used to confirm delete action
 lineemotes.confirm = function () {}
 
-lineemotes.confirm.buildContainer = function () { 
-    var container = '';
-    container += `
+lineemotes.confirm.buildContainer = function () {
+  var localization_strings = lineemotes.prototype.getLocalizationStrings();
+  var container = '';
+  container += `
 <div class="confirm" style="opacity: 0; pointer-events: none;">
     <div class="box">
         <h3 class="value"></h3>
-        <h3 style="padding: 10px;">Are you sure you want to delete this pack?</h3>
+        <h3 style="padding: 10px;">${localization_strings['delete-confirm']}</h3>
         <div>
-            <span class="yes">Yes</span>
-            <span class="no" onclick="lineemotes.confirm.hide();">No</span>
+            <span class="yes">${localization_strings['yes']}</span>
+            <span class="no" onclick="lineemotes.confirm.hide();">${localization_strings['no']}</span>
         </div>
     </div>
 </div>`;
-    return container;
+  return container;
 };
 
 lineemotes.confirm.show = function() {
@@ -175,4 +176,3 @@ lineemotes.confirm.init = function () {
         lineemotes.confirm.show();
     });
 };
-

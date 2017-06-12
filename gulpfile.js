@@ -4,11 +4,11 @@ const sass = require('gulp-sass');
 const concat = require('gulp-concat-util');
 const pump = require('pump');
 
-const entry = 'source/*.js';
+const source = 'source';
+const entry = source + '/*.js';
 const name = 'lineemotes.plugin.js';
 const betterdiscord = process.env.appdata + '/BetterDiscord/plugins/';
 const build = 'dist';
-const source = 'source';
 
 const deploy = true; // copy built plugin directly into BetterDiscord
 
