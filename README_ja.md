@@ -53,12 +53,12 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
 * `Ctrl + Shift + I`を押してDeveloper toolsを開きます。
 
 * consoleで以下のコマンドを実行します: ``lineemotes.appendPack(`タイトル`, 最初のスタンプのID, スタンプの数)``
-<br> 例: *``lineemotes.appendPack(`Miko sister of fox`, 1133826, 40)``*
+<br> 例: *``lineemotes.appendPack(`きつねみみこ`, 1133826, 40)``*
 
 ### スタンプのID、スタンプの数を取得する
 
 #### Grease/Tampermonkeyのユーザースクリプトを使って取得する
-[![](https://camo.githubusercontent.com/5bdd4700ace4bc35fb435e0021d30a5084d000ed/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333631313238363034303437373639372f756e6b6e6f776e2e706e67)](https://greasyfork.org/en/scripts/23630)
+[![](https://camo.githubusercontent.com/ea08b41f22f96abe3addd30f38799337e7873510/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333831383538333833323339353737362f756e6b6e6f776e2e706e67)](https://greasyfork.org/en/scripts/23630)
 
 もしあなたが[Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)か[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を使っているならば、[このスクリプト](https://greasyfork.org/en/scripts/23630)を使用するとストアのページにIDなど必要な情報を自動で表示することができます。
 
