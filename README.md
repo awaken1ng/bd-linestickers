@@ -5,8 +5,8 @@ _Feel free to [join the Discord server](https://discordapp.com/invite/wCX6K8q) a
 # BetterDiscord LINE Stickers Plugin
 
 Extends BetterDiscord emote menu to add a tab with LINE stickers to it
-[![](https://camo.githubusercontent.com/6b145ba99071dd660d1ac866cc507e74de704874/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363635363935343137393538352f756e6b6e6f776e2e706e67)]()
-[![](https://camo.githubusercontent.com/84a146ee8b202df573c4c4303759ea19a8b150ee/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363637393032303431323932382f756e6b6e6f776e2e706e67)]()
+[![](https://camo.githubusercontent.com/6b145ba99071dd660d1ac866cc507e74de704874/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363635363935343137393538352f756e6b6e6f776e2e706e67)](https://github.com/awaken1ng/bd-linestickers#installation)
+[![](https://camo.githubusercontent.com/84a146ee8b202df573c4c4303759ea19a8b150ee/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363637393032303431323932382f756e6b6e6f776e2e706e67)](https://github.com/awaken1ng/bd-linestickers#installation)
 
 *to enable Dark theme, enable Dark mode in BetterDiscord settings*
 
@@ -49,7 +49,7 @@ There are two ways of adding stickers:
 
   ![](https://camo.githubusercontent.com/b679d291fabdb1fc8a6ce36917d68275f31a963c/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323130313939313234333737382f756e6b6e6f776e2e706e67)
 
-* Enter the title, length (amount of stickers in a pack) and the ID of the first sticker and press `Add` button
+* Enter the title, amount of stickers in a pack and the ID of the first sticker and press `Add` button
 
   ![](https://camo.githubusercontent.com/756765fef0bc6a58ea242015d0bab7481c210e5a/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323332323536313137313435382f756e6b6e6f776e2e706e67)
 
@@ -57,11 +57,11 @@ There are two ways of adding stickers:
 
 * Open the developer tools by pressing `Ctrl + Shift + I`
 
-* In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, length)``
+* In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, sticker count)``
 <br> *for example ``lineemotes.appendPack(`Miko sister of fox`, 1133826, 40)``*
 
 
-### Getting sticker's title, ID and length
+### Getting sticker's title, ID and sticker count
 
 #### Grease/Tampermonkey user script
 [![](https://camo.githubusercontent.com/90e0741670663dbc6e414478d793b5a50ffbb2cb/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138363631353934313336353736302f756e6b6e6f776e2e706e67)](https://greasyfork.org/en/scripts/23630)
@@ -83,10 +83,10 @@ Sticker ID can be found in a sticker URL, the said URL can be extracted from a p
 
 ![](https://camo.githubusercontent.com/78635b5611f1cb82378737c741dd3a3c255569e7/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303139333031353831353739383738362f756e6b6e6f776e2e706e67)
 
-##### Finding length
+##### Finding sticker count
 Just count them =P
 
-Default length is 40, which is the standard length for most sticker packs, however, some packs, usually animated, can be an exception to this
+Default sticker count is 40, which is the standard for most sticker packs, however, some packs, usually animated, can be an exception to this
 
 ## Resizing the window
 
@@ -116,4 +116,4 @@ For example `https://dl.stickershop.line.naver.jp/products/0/0/1/2999/android/st
 
 Using a file archiver of your choice, open the zip file, find the sticker with the lowest ID, that will be the first sticker ID
 
-*Note: assuming length is 40, if the zip file doesn't contain 83 files (40 stickers, 40 thumbnails, 2 category icons, 1 metadata file), set the length accordingly*
+*Note: assuming sticker count is 40, if the zip file doesn't contain 83 files (40 stickers, 40 thumbnails, 2 category icons, 1 metadata file), set the sticker count accordingly*
