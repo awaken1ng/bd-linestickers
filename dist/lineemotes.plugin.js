@@ -580,10 +580,12 @@ lineemotes.menu.appendPack = function(id) {
 };
 
 lineemotes.menu.open = function() {
-    if ($(`#bda-qem-line-container`).length === 1)
-        return true;
-    else
+    // Check if the LINE tab is currently open and visible
+    let display = document.getElementById('bda-qem-line-container').style.display;
+    if (display === 'none')
         return false;
+    else
+        return true;
 };
 
 
