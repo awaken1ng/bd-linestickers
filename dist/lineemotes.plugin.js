@@ -1268,4 +1268,4 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-lineemotes.prototype.getVersion = () => "0.6.3";
+lineemotes.prototype.getVersion = () => "0.6.5";
