@@ -3,7 +3,7 @@
 // @namespace   lineappendstring
 // @description Automatic generation of append string for BetterDiscord plugin
 // @include     https://store.line.me/stickershop/product/*
-// @version     0.3.2
+// @version     0.3.4
 // @grant       none
 // ==/UserScript==
 
@@ -24,9 +24,9 @@ var strings = {
 if (locale === 'ja') {
   strings = {
     'title' : 'タイトル',
-    'count': 'スタンプ数',
-    'first_id': '一番目のID',
-    'append': 'コンソールのコマンド'
+    'count': 'スタンプの数',
+    'first_id': '最初のスタンプID',
+    'append': '追加のコマンド'
   }
 }
 
