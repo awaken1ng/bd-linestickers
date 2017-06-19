@@ -469,14 +469,8 @@ lineemotes.menu.resize = function() {
     if (!lineemotes.menu.open()) return;
     var width = bdPluginStorage.get('lineemotes', 'width');
     var height = bdPluginStorage.get('lineemotes', 'height');
-
-    if ((width === null) || (height === null)) return;
-    if (width < 344) {
-        bdPluginStorage.set('lineemotes', 'width', 344);
-        throw "Can't set width less than 344px"; }
-    if (height < 326) {
-        bdPluginStorage.set('lineemotes', 'height', 326);
-        throw "Can't set height less than 326px"; }
+    if (width === null) { lineemotes.menu.setWidth(0); return; }
+    if (height === null) { lineemotes.menu.setHeight(0); return; }
 
     $('#bda-qem-line-container').css('width', width);
     $('#bda-qem-line-container').css('height', height);
