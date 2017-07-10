@@ -117,3 +117,9 @@ For example `https://dl.stickershop.line.naver.jp/products/0/0/1/2999/android/st
 Using a file archiver of your choice, open the zip file, find the sticker with the lowest ID, that will be the first sticker ID
 
 *Note: assuming sticker count is 40, if the zip file doesn't contain 83 files (40 stickers, 40 thumbnails, 2 category icons, 1 metadata file), set the sticker count accordingly*
+
+## CSS patches for theme compatibility
+
+Copy and paste the CSS patch into Custom CSS
+
+- Beard's Material Design ([theme](https://github.com/BeardDesign1/Material-design-theme), [patch](https://gist.github.com/awaken1ng/417d8faf8dc69f5df9c43ede3c841856))
