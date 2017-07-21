@@ -123,3 +123,4 @@ Using a file archiver of your choice, open the zip file, find the sticker with t
 Copy and paste the CSS patch into Custom CSS
 
 - Beard's Material Design ([theme](https://github.com/BeardDesign1/Material-design-theme), [patch](https://gist.github.com/awaken1ng/417d8faf8dc69f5df9c43ede3c841856))
+- Full Dark ([theme](https://github.com/fluffingtons/fulldark), [patch](https://gist.github.com/awaken1ng/3ff89021b3f913254e515ae0393790af))
