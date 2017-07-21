@@ -347,9 +347,10 @@ lineemotes.menu.appendPack = function(id) {
 
 lineemotes.menu.open = function() {
     // Check if the LINE tab is currently open and visible
-    let display = document.getElementById('bda-qem-line-container').style.display;
-    if (display === 'none')
-        return false;
-    else
-        return true;
+    let container = document.getElementById('bda-qem-line-container')
+    if (container) {
+        let display = container.style.display;
+        if (display !== 'none') return true;
+    }
+    return false
 };
