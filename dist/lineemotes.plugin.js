@@ -338,7 +338,10 @@ lineemotes.menu.init = function () {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".channel-textarea-inner textarea");
+            var ta = $(".channel-text-area-default textarea"); // new chat bar
+            if (!ta.length) {  // default to the old selector if the new chat bar is not found
+                ta = $(".channel-textarea-inner textarea");
+            }
             ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
             // force the textarea to resize if needed
             ta[0].dispatchEvent(new Event('input', { bubbles: true }));
@@ -429,7 +432,10 @@ lineemotes.menu.unload = function () {
         emoteIcon.off();
         emoteIcon.on("click", function() {
             var emote = $(this).attr("title");
-            var ta = $(".channel-textarea-inner textarea");
+            var ta = $(".channel-text-area-default textarea"); // new chat bar
+            if (!ta.length) {
+                ta = $(".channel-textarea-inner textarea")
+            }
             ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
         });
     };
@@ -575,11 +581,12 @@ lineemotes.menu.appendPack = function(id) {
 
 lineemotes.menu.open = function() {
     // Check if the LINE tab is currently open and visible
-    let display = document.getElementById('bda-qem-line-container').style.display;
-    if (display === 'none')
-        return false;
-    else
-        return true;
+    let container = document.getElementById('bda-qem-line-container')
+    if (container) {
+        let display = container.style.display;
+        if (display !== 'none') return true;
+    }
+    return false
 };
 
 
@@ -1268,4 +1275,4 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-lineemotes.prototype.getVersion = () => "0.6.5";
+lineemotes.prototype.getVersion = () => "0.6.6";
