@@ -114,9 +114,12 @@ lineemotes.menu.init = function () {
             if (!ta.length) {  // default to the old selector if the new chat bar is not found
                 ta = $(".channel-textarea-inner textarea");
             }
-            ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+            var text = ta.val().slice(-1) == " " ? emote : " " + emote
+            ta.focus();
+            document.execCommand("insertText", false, text);
             // force the textarea to resize if needed
             ta[0].dispatchEvent(new Event('input', { bubbles: true }));
+			
         });
         lineemotes.preview.init();
         lineemotes.categories.init();
@@ -208,7 +211,9 @@ lineemotes.menu.unload = function () {
             if (!ta.length) {
                 ta = $(".channel-textarea-inner textarea")
             }
-            ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+            var text = ta.val().slice(-1) == " " ? emote : " " + emote
+            ta.focus();
+            document.execCommand("insertText", false, text);
         });
     };
 
@@ -304,7 +309,9 @@ lineemotes.menu.appendPack = function(id) {
                 var emote = $(this).attr("title");
             }
             var ta = $(".channel-textarea-inner textarea");
-            ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+            var text = ta.val().slice(-1) == " " ? emote : " " + emote
+            ta.focus();
+            document.execCommand("insertText", false, text);
         });
 
     // enable deletion
