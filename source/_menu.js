@@ -110,10 +110,7 @@ lineemotes.menu.init = function () {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".channel-text-area-default textarea"); // new chat bar
-            if (!ta.length) {  // default to the old selector if the new chat bar is not found
-                ta = $(".channel-textarea-inner textarea");
-            }
+            var ta = $(".chat form textarea");
             var text = ta.val().slice(-1) == " " ? emote : " " + emote
             ta.focus();
             document.execCommand("insertText", false, text);
@@ -207,10 +204,7 @@ lineemotes.menu.unload = function () {
         emoteIcon.off();
         emoteIcon.on("click", function() {
             var emote = $(this).attr("title");
-            var ta = $(".channel-text-area-default textarea"); // new chat bar
-            if (!ta.length) {
-                ta = $(".channel-textarea-inner textarea")
-            }
+            var ta = $(".chat form textarea");
             var text = ta.val().slice(-1) == " " ? emote : " " + emote
             ta.focus();
             document.execCommand("insertText", false, text);
@@ -308,7 +302,7 @@ lineemotes.menu.appendPack = function(id) {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".channel-textarea-inner textarea");
+            var ta = $(".chat form textarea");
             var text = ta.val().slice(-1) == " " ? emote : " " + emote
             ta.focus();
             document.execCommand("insertText", false, text);
