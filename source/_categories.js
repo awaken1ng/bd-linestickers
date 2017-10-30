@@ -31,7 +31,14 @@ lineemotes.categories.buildContainer = function() {
     </button>
 </div>
 <div class="categories-container">
-  <div class="categories-wrapper"><div class="item"><div class="add-pack icon-plus"></div></div>${categories}</div>
+    <div class="categories-wrapper">
+        <div class="item add-pack-button">
+            <svg class="add-pack" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+            </svg>
+        </div>
+        ${categories}
+    </div>
 </div>
 `;
     return container;

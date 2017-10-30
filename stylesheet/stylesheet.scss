@@ -274,8 +274,24 @@ $dark-border-color: #2b2b2b;
   }
 
 
-  .add-pack {
+  .categories-container .categories-wrapper .item.add-pack-button { filter: unset; }
+  // .categories-container .categories-wrapper .item.add-pack-button:hover { filter: grayscale(100%); }
+  .add-pack-button {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .add-pack-button > svg {
+    position: absolute;
+    top: 13px;
+  }
+  .add-pack-button > svg > path {
     opacity: 0.5;
+    fill: #8c8c8c;
+  }
+  .add-pack-button > svg > path:hover {
+    opacity: 1;
   }
   
 

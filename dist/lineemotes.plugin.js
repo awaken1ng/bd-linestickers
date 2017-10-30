@@ -136,7 +136,14 @@ lineemotes.categories.buildContainer = function() {
     </button>
 </div>
 <div class="categories-container">
-  <div class="categories-wrapper"><div class="item"><div class="add-pack icon-plus"></div></div>${categories}</div>
+    <div class="categories-wrapper">
+        <div class="item add-pack-button">
+            <svg class="add-pack" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+            </svg>
+        </div>
+        ${categories}
+    </div>
 </div>
 `;
     return container;
@@ -1271,8 +1278,21 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
       color: #ad0000; }
     #bda-qem-line-container .confirm .no:hover {
       color: #98aab6; }
-  #bda-qem-line-container .add-pack {
-    opacity: 0.5; }
+  #bda-qem-line-container .categories-container .categories-wrapper .item.add-pack-button {
+    filter: unset; }
+  #bda-qem-line-container .add-pack-button {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px; }
+  #bda-qem-line-container .add-pack-button > svg {
+    position: absolute;
+    top: 13px; }
+  #bda-qem-line-container .add-pack-button > svg > path {
+    opacity: 0.5;
+    fill: #8c8c8c; }
+  #bda-qem-line-container .add-pack-button > svg > path:hover {
+    opacity: 1; }
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
