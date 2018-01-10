@@ -34,11 +34,14 @@ lineemotes.prototype.onSwitch = function () {
 
 lineemotes.prototype.settings = function () {};
 lineemotes.prototype.settings.toggleHide = function () {
-    console.log('toggling hide');
-    if (document.getElementById('line-settings-hideurl').checked) {
+    let checked = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs')
+    lineemotes.log(`Toggling hide, was ${checked}`)
+    if (!checked) {
         bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', true);
+        $('#line-settings-hideurl').parent().find('.ui-switch').addClass('checked')
     } else {
         bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', false);
+        $('#line-settings-hideurl').parent().find('.ui-switch').removeClass('checked')
     }
 };
 
@@ -59,6 +62,8 @@ lineemotes.prototype.getSettingsPanel = function () {
 
     let div = document.createElement('div');
     div.classList.add('ui-switch');
+    if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs'))
+        div.classList.add('checked');
 
     toggle.appendChild(input);
     toggle.appendChild(div);

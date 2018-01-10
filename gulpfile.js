@@ -10,7 +10,7 @@ const name = 'lineemotes.plugin.js';
 const betterdiscord = process.env.appdata + '/BetterDiscord/plugins/';
 const build = 'dist';
 
-const deploy = true; // copy built plugin directly into BetterDiscord
+const deploy = false; // copy built plugin directly into BetterDiscord
 
 
 gulp.task('build', ['build:css'], function (callback) {

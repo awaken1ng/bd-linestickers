@@ -34,11 +34,14 @@ lineemotes.prototype.onSwitch = function () {
 
 lineemotes.prototype.settings = function () {};
 lineemotes.prototype.settings.toggleHide = function () {
-    console.log('toggling hide');
-    if (document.getElementById('line-settings-hideurl').checked) {
+    let checked = bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs')
+    lineemotes.log(`Toggling hide, was ${checked}`)
+    if (!checked) {
         bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', true);
+        $('#line-settings-hideurl').parent().find('.ui-switch').addClass('checked')
     } else {
         bdPluginStorage.set(lineemotes.storage.getName(), 'hideURLs', false);
+        $('#line-settings-hideurl').parent().find('.ui-switch').removeClass('checked')
     }
 };
 
@@ -59,6 +62,8 @@ lineemotes.prototype.getSettingsPanel = function () {
 
     let div = document.createElement('div');
     div.classList.add('ui-switch');
+    if (bdPluginStorage.get(lineemotes.storage.getName(), 'hideURLs'))
+        div.classList.add('checked');
 
     toggle.appendChild(input);
     toggle.appendChild(div);
@@ -240,14 +245,13 @@ lineemotes.menu.init = function () {
 
     // overriding
     // adding line tab into the callback function
-    QuickEmoteMenu.prototype.obsCallback = function(e) {
+    QuickEmoteMenu.prototype.obsCallback = function(elem) {
+        var e = $(elem);
         // Emotes - Show Discord emoji menu
         if (!settingsCookie["bda-es-9"])
             e.addClass("bda-qme-hidden");
          else
             e.removeClass("bda-qme-hidden");
-
-        var self = this;
 
         // rebuild container if the language was changed
         var localization_strings = lineemotes.prototype.getLocalizationStrings();
@@ -312,7 +316,7 @@ lineemotes.menu.init = function () {
         fav.removeClass("active");
         emojis.removeClass("active");
         line.removeClass("active");
-        $(".emoji-picker").hide();
+        $(".emoji-picker, .emojiPicker-3g68GS").hide();
         $("#bda-qem-favourite-container").hide();
         $("#bda-qem-twitch-container").hide();
         $("#bda-qem-line-container").hide();
@@ -327,11 +331,13 @@ lineemotes.menu.init = function () {
             break;
         case "bda-qem-emojis":
             emojis.addClass("active");
-            $(".emoji-picker").show();
+            $(".emoji-picker, .emojiPicker-3g68GS").show();
+                $(".emoji-picker .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
             break
         case "bda-qem-line":
             line.addClass("active");
             $("#bda-qem-line-container").show();
+            break
         }
         this.lastTab = id;
         var emoteIcon = $(".emote-icon");
@@ -345,10 +351,8 @@ lineemotes.menu.init = function () {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".chat form textarea");
-            var text = ta.val().slice(-1) == " " ? emote : " " + emote
-            ta.focus();
-            document.execCommand("insertText", false, text);
+            var ta = utils.getTextArea();
+            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
             // force the textarea to resize if needed
             ta[0].dispatchEvent(new Event('input', { bubbles: true }));
 			
@@ -392,57 +396,61 @@ lineemotes.menu.rebuild = function () {
 
 lineemotes.menu.unload = function () {
     // reverting the overriden functions
-    QuickEmoteMenu.prototype.obsCallback = function(e) {
-        if (!settingsCookie["bda-es-9"]) {
+    QuickEmoteMenu.prototype.obsCallback = function (elem) {
+        var e = $(elem);
+        if(!settingsCookie["bda-es-9"]) {
             e.addClass("bda-qme-hidden");
         } else {
             e.removeClass("bda-qme-hidden");
         }
-        if (!settingsCookie["bda-es-0"])
-            return;
-        var self = this;
+    
+        if(!settingsCookie["bda-es-0"]) return;
+    
         e.prepend(this.qmeHeader);
         e.append(this.teContainer);
         e.append(this.faContainer);
-        if (this.lastTab == undefined) {
+    
+        if(this.lastTab == undefined) {
             this.lastTab = "bda-qem-favourite";
-        }
+        } 
         this.switchQem(this.lastTab);
     };
 
-    QuickEmoteMenu.prototype.switchQem = function(id) {
+    QuickEmoteMenu.prototype.switchQem = function (id) {
         var twitch = $("#bda-qem-twitch");
         var fav = $("#bda-qem-favourite");
         var emojis = $("#bda-qem-emojis");
         twitch.removeClass("active");
         fav.removeClass("active");
         emojis.removeClass("active");
-        $(".emoji-picker").hide();
+    
+        $(".emoji-picker, .emojiPicker-3g68GS").hide();
         $("#bda-qem-favourite-container").hide();
         $("#bda-qem-twitch-container").hide();
-        switch (id) {
-        case "bda-qem-twitch":
-            twitch.addClass("active");
-            $("#bda-qem-twitch-container").show();
+    
+        switch(id) {
+            case "bda-qem-twitch":
+                twitch.addClass("active");
+                $("#bda-qem-twitch-container").show();
             break;
-        case "bda-qem-favourite":
-            fav.addClass("active");
-            $("#bda-qem-favourite-container").show();
+            case "bda-qem-favourite":
+                fav.addClass("active");
+                $("#bda-qem-favourite-container").show();
             break;
-        case "bda-qem-emojis":
-            emojis.addClass("active");
-            $(".emoji-picker").show();
-            break
+            case "bda-qem-emojis":
+                emojis.addClass("active");
+                $(".emoji-picker, .emojiPicker-3g68GS").show();
+                $(".emoji-picker .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
+            break;
         }
         this.lastTab = id;
+    
         var emoteIcon = $(".emote-icon");
         emoteIcon.off();
-        emoteIcon.on("click", function() {
+        emoteIcon.on("click", function () {
             var emote = $(this).attr("title");
-            var ta = $(".chat form textarea");
-            var text = ta.val().slice(-1) == " " ? emote : " " + emote
-            ta.focus();
-            document.execCommand("insertText", false, text);
+            var ta = utils.getTextArea();
+            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
         });
     };
 
@@ -1091,7 +1099,7 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
     flex-grow: 1; }
   #bda-qem-line-container .add-form .line-add-button {
     top: 1px;
-    width: 42px;
+    width: 35px;
     height: auto;
     padding: 0px;
     border-radius: 3px;
@@ -1296,4 +1304,4 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-lineemotes.prototype.getVersion = () => "0.6.8";
+lineemotes.prototype.getVersion = () => "0.6.9";
