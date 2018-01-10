@@ -102,8 +102,15 @@ lineemotes.prototype.getLocalizationStrings = function () {
 
 //logger function, outputs console message in '[Line Stickers] <message>' format
 lineemotes.log = (message) => console.log(`[${lineemotes.prototype.getName()}] ${message}`);
+lineemotes.getBDRepo = () => {
+    var script_url = $("script[src*='BetterDiscordApp']").attr('src').split('/')
+    if (script_url[4] !== 'BetterDiscordApp')
+        throw ReferenceError(`Error in getBDRepo(), expected 'BetterDiscordApp', found '${script_url[4]}'`)
+    return script_url[3]
+};
 
 lineemotes.prototype.getName = () => "Line Stickers";
 lineemotes.prototype.getDescription = () => "Extends emote menu to add Line stickers.";
 // lineemotes.prototype.getVersion = () => "0.6.3";
 lineemotes.prototype.getAuthor = () => "Awakening";
+
