@@ -936,10 +936,18 @@ lineemotes.pack.wrapPack = function (stickerid) {
 <div class="line-pack" data-id="${pack['starting_id']}">
     <div class="line-editbar">
         <span class="item">
-            <span class="icon-plus-cross icon-plus"></span>
+            <svg class="icon-plus-cross" width="18" height="18" style="opacity:0.6;">
+                <g fill="none" fill-rule="evenodd">
+                    <path d="M0 0h18v18H0" stroke-width="2px"></path>
+                    <path stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round" stroke-width="2px"></path>
+                    <path stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round" stroke-width="2px"></path>
+                </g>
+            </svg>
         </span>
         <span class="item">
-            <span class="icon-edit"></span>
+            <svg class="icon-edit" width="18" height="18">
+                <path fill="#737F8D" fill-rule="evenodd" d="M3 14v-2.5l7.88-7.85c.19-.2.51-.2.71 0l1.76 1.76c.2.2.2.51 0 .71L5.47 14H3zm12 0H7.5l2-2H15v2z"/>
+            </svg>
         </span>
 
         <span class="item" style="display: none; text-align: center; width: 30px; vertical-align: middle; line-height: 23.5px; color: #d1d1d1;">
@@ -975,11 +983,11 @@ lineemotes.editbar.init = function () {
                 lineemotes.storage.renamePack(id, value);
                 $(event.target.parentNode).html(value);
             }
-
+            
             header.find('input')
                 .on('blur', (event) => {
                     save(event);
-                    bar.removeClass('visible')
+                    bar.removeClass('visible');  // FIXME doesn't actually gets removed
                 })
                 .on('keydown', (event) => {
                     if ((event.key === 'Escape') || (event.key ==='Enter')) {
@@ -1210,49 +1218,8 @@ lineemotes.storage.renamePack = function(id, newtitle) {
     }
 }
 lineemotes.getStylesheet = function () { 
-var stylesheet = `#bda-qem-line-container .icon-plus {
-  width: 22px;
-  height: 22px;
-  background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-  background-position: -220px -484px;
-  background-size: 924px 682px;
-  filter: grayscale(100%);
-  margin: 11px 0 0 0; }
-
-#bda-qem-line-container .icon-plus-cross {
-  display: inherit;
-  margin: 0;
-  transform: rotate(45deg);
-  filter: invert(100%) grayscale(100%); }
-
-#bda-qem-line-container .icon-minus {
-  width: 22px;
-  height: 22px;
-  background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-  background-position: -242px -484px;
-  background-size: 924px 682px;
-  filter: grayscale(100%);
-  margin: 11px 0 0 0; }
-
-#bda-qem-line-container .icon-edit {
-  display: inherit;
-  width: inherit;
-  height: inherit;
-  background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-  background-position: -528px -374px;
-  background-size: 924px 682px;
-  filter: grayscale(100%);
-  transform: rotate(90deg) scale(0.8); }
-
-#bda-qem-line-container .icon-triangle {
-  width: 22px;
-  height: 22px;
-  background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-  background-position: -858px -484px;
-  background-size: 924px 682px;
-  filter: hue-rotate(130deg);
-  float: right;
-  margin-right: 5px; }
+var stylesheet = `#bda-qem-line-container .icon-edit {
+  filter: grayscale(100%); }
 
 #bda-qem-line-container .add-form {
   position: absolute;
@@ -1426,7 +1393,7 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
   #bda-qem-line-container .line-pack .line-editbar {
     float: right;
     display: flex;
-    padding-top: 7px;
+    padding-top: 10px;
     opacity: 0;
     transition: opacity .1s ease-in-out; }
     #bda-qem-line-container .line-pack .line-editbar .item {
@@ -1490,4 +1457,4 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-lineemotes.prototype.getVersion = () => "0.6.9a";
+lineemotes.prototype.getVersion = () => "0.6.9b";

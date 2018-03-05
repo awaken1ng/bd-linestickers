@@ -1,50 +1,5 @@
 #bda-qem-line-container {
-  .icon-plus {
-    width: 22px;
-    height: 22px;
-    background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-    background-position: -220px -484px;
-    background-size: 924px 682px;
-    filter: grayscale(100%);
-    margin: 11px 0 0 0;
-  }
-
-  .icon-plus-cross {
-    display: inherit;
-    margin: 0;
-    transform: rotate(45deg);
-    filter: invert(100%) grayscale(100%);
-  }
-
-  .icon-minus {
-    width: 22px;
-    height: 22px;
-    background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-    background-position: -242px -484px;
-    background-size: 924px 682px;
-    filter: grayscale(100%);
-    margin: 11px 0 0 0;
-  }
-
   .icon-edit {
-    display: inherit;
-    width: inherit;
-    height: inherit;
-    background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-    background-position: -528px -374px;
-    background-size: 924px 682px;
     filter: grayscale(100%);
-    transform: rotate(90deg) scale(0.8);
-  }
-  
-  .icon-triangle {
-    width: 22px;
-    height: 22px;
-    background-image: url(/assets/99d227db4a23596956637210e624d79b.png);
-    background-position: -858px -484px;
-    background-size: 924px 682px;
-    filter: hue-rotate(130deg);
-    float: right;
-    margin-right: 5px;
   }
 }

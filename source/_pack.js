@@ -76,10 +76,18 @@ lineemotes.pack.wrapPack = function (stickerid) {
 <div class="line-pack" data-id="${pack['starting_id']}">
     <div class="line-editbar">
         <span class="item">
-            <span class="icon-plus-cross icon-plus"></span>
+            <svg class="icon-plus-cross" width="18" height="18" style="opacity:0.6;">
+                <g fill="none" fill-rule="evenodd">
+                    <path d="M0 0h18v18H0" stroke-width="2px"></path>
+                    <path stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round" stroke-width="2px"></path>
+                    <path stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round" stroke-width="2px"></path>
+                </g>
+            </svg>
         </span>
         <span class="item">
-            <span class="icon-edit"></span>
+            <svg class="icon-edit" width="18" height="18">
+                <path fill="#737F8D" fill-rule="evenodd" d="M3 14v-2.5l7.88-7.85c.19-.2.51-.2.71 0l1.76 1.76c.2.2.2.51 0 .71L5.47 14H3zm12 0H7.5l2-2H15v2z"/>
+            </svg>
         </span>
 
         <span class="item" style="display: none; text-align: center; width: 30px; vertical-align: middle; line-height: 23.5px; color: #d1d1d1;">
@@ -115,11 +123,11 @@ lineemotes.editbar.init = function () {
                 lineemotes.storage.renamePack(id, value);
                 $(event.target.parentNode).html(value);
             }
-
+            
             header.find('input')
                 .on('blur', (event) => {
                     save(event);
-                    bar.removeClass('visible')
+                    bar.removeClass('visible');  // FIXME doesn't actually gets removed
                 })
                 .on('keydown', (event) => {
                     if ((event.key === 'Escape') || (event.key ==='Enter')) {
