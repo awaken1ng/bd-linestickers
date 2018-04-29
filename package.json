@@ -1,6 +1,6 @@
 {
   "name": "bd-linestickers",
-  "version": "0.6.9b",
+  "version": "0.6.9с",
   "scripts": {
     "build": "gulp build --color",
     "build:css": "gulp build:css --color",
