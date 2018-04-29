@@ -7,7 +7,7 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
 
 ## インストール
 
-* [BetterDiscord](https://betterdiscord.net/)をインストールする。
+* [BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)をインストールする。
 * プラグインをインストール
 	* BetterDiscordのプラグインフォルダ(`%appdata%\BetterDiscord\plugins`)をエクスプローラーで開く
   * [`lineemotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/dist/lineemotes.plugin.js)を保存してプラグインフォルダに入れる
