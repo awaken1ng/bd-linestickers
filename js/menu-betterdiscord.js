@@ -1,11 +1,20 @@
+const log = require('#/js/logger')
+const l10n = require('#/js/l10n')
+const containerTemplate = require('#/templates/menu-container')
+
 class Menu {
   initialize () {
+    this.restore = {
+      obsCallback: QuickEmoteMenu.prototype.obsCallback,
+      switchQem: QuickEmoteMenu.prototype.switchQem
+    }
+
     quickEmoteMenu.lsContainer = this.buildContainer()
 
     // overriding
-    // adding line tab into the callback function
+    // adding LINE tab into the callback function
     QuickEmoteMenu.prototype.obsCallback = function (elem) {
-      var e = $(elem)
+      let e = $(elem)
       // Emotes - Show Discord emoji menu
       if (!settingsCookie['bda-es-9']) {
         e.addClass('bda-qme-hidden')
@@ -13,22 +22,19 @@ class Menu {
         e.removeClass('bda-qme-hidden')
       }
 
-      // rebuild container if the language was changed
-      var localization_strings = lineemotes.getLocalizationStrings()
-      if (this.locale === undefined) {
-        this.locale = document.children[0].getAttribute('lang')
+      if (!this.locale) {
+        this.locale = l10n.getCurrentLocale()
       } else if (this.locale !== document.children[0].getAttribute('lang')) {
-        lineemotes.log('Language changed, rebuilding container to reflect changes')
-        this.locale = document.children[0].getAttribute('lang')
+        log('Language changed, rebuilding container to reflect changes')
+        this.locale = l10n.getCurrentLocale()
         this.lsContainer = lineemotes.menu.buildContainer()
       }
 
-      // avoid unnecessary whitespace
-      var qmeHeader = `<div id="bda-qem">`
-      qmeHeader += `<button class="active" id="bda-qem-twitch" onclick='quickEmoteMenu.switchHandler(this); return false;'>Twitch</button>`
-      qmeHeader += `<button id="bda-qem-favourite" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-favourite']}</button>`
-      qmeHeader += `<button id="bda-qem-emojis" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-emojis']}</button>`
-      qmeHeader += `<button id="bda-qem-line" onclick="quickEmoteMenu.switchHandler(this); return false;">${localization_strings['bda-qem-line']}</button>`
+      let qmeHeader = '<div id="bda-qem">'
+      qmeHeader += '<button class="active" id="bda-qem-twitch" onclick="quickEmoteMenu.switchHandler(this); return false;">Twitch</button>'
+      qmeHeader += `<button id="bda-qem-favourite" onclick="quickEmoteMenu.switchHandler(this); return false;">${l10n.getToken('bda-qem-favourite')}</button>`
+      qmeHeader += `<button id="bda-qem-emojis" onclick="quickEmoteMenu.switchHandler(this); return false;">${l10n.getToken('bda-qem-emojis')}</button>`
+      qmeHeader += `<button id="bda-qem-line" onclick="quickEmoteMenu.switchHandler(this); return false;">${l10n.getToken('bda-qem-line')}</button>`
       qmeHeader += `<div>`
       e.prepend(qmeHeader)
 
@@ -49,81 +55,76 @@ class Menu {
       }
 
       // if twitch/favourite tab is disabled and the last open tab was one of them
-      if (((this.lastTab == 'bda-qem-emojis') || (this.lastTab == 'bda-qem-favourite')) && (!settingsCookie['bda-es-0']))
-        this.lastTab = "bda-qem-emojis"
+      if (((this.lastTab === 'bda-qem-emojis') || (this.lastTab === 'bda-qem-favourite')) && (!settingsCookie['bda-es-0'])) {
+        this.lastTab = 'bda-qem-emojis'
+      }
 
       // if discord emoji tab is disabled and it was the last open tab
-      if ((this.latTab == 'bda-qem-emojis') && (!settingsCookie["bda-es-9"]))
-        this.lastTab = "bda-qem-favourite"
+      if ((this.latTab === 'bda-qem-emojis') && (!settingsCookie['bda-es-9'])) {
+        this.lastTab = 'bda-qem-favourite'
+      }
 
-      if (this.lastTab === undefined)
+      if (!this.lastTab) {
         // if twitch tab is disabled, default to discord emoji tab
-        if (!settingsCookie["bda-es-0"])
+        if (!settingsCookie['bda-es-0']) {
           this.lastTab = 'bda-qem-emojis'
-        else
-          this.lastTab = "bda-qem-favourite"
+        } else {
+          this.lastTab = 'bda-qem-favourite'
+        }
+      }
 
       this.switchQem(this.lastTab)
     }
     // initializing stuff,
     // making the tab openable, copying sticker URL into text area on click, initializing on-hover preview
     QuickEmoteMenu.prototype.switchQem = function (id) {
-      var twitch = $("#bda-qem-twitch")
-      var fav = $("#bda-qem-favourite")
-      var emojis = $("#bda-qem-emojis")
-      var line = $("#bda-qem-line")
-      twitch.removeClass("active")
-      fav.removeClass("active")
-      emojis.removeClass("active")
-      line.removeClass("active")
+      let twitch = $('#bda-qem-twitch')
+      let fav = $('#bda-qem-favourite')
+      let emojis = $('#bda-qem-emojis')
+      let line = $('#bda-qem-line')
+      twitch.removeClass('active')
+      fav.removeClass('active')
+      emojis.removeClass('active')
+      line.removeClass('active')
 
-      $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").hide()
-      $("#bda-qem-favourite-container").hide()
-      $("#bda-qem-twitch-container").hide()
-      $("#bda-qem-line-container").hide()
+      $('.emojiPicker-3m1S-j').hide()
+      $('#bda-qem-favourite-container').hide()
+      $('#bda-qem-twitch-container').hide()
+      $('#bda-qem-line-container').hide()
 
       switch (id) {
-        case "bda-qem-twitch":
-          twitch.addClass("active")
-          $("#bda-qem-twitch-container").show()
+        case 'bda-qem-twitch':
+          twitch.addClass('active')
+          $('#bda-qem-twitch-container').show()
           break
-        case "bda-qem-favourite":
-          fav.addClass("active")
-          $("#bda-qem-favourite-container").show()
+        case 'bda-qem-favourite':
+          fav.addClass('active')
+          $('#bda-qem-favourite-container').show()
           break
-        case "bda-qem-emojis":
-          emojis.addClass("active")
-          $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").show()
-          $(".emojiPicker-3m1S-j .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus()
+        case 'bda-qem-emojis':
+          emojis.addClass('active')
+          $('.emojiPicker-3m1S-j').show()
+          $('.emojiPicker-3m1S-j .search-bar-inner input').focus()
           break
-        case "bda-qem-line":
-          line.addClass("active")
-          $("#bda-qem-line-container").show()
+        case 'bda-qem-line':
+          line.addClass('active')
+          $('#bda-qem-line-container').show()
           break
       }
       this.lastTab = id
 
-      var emoteIcon = $(".emote-icon")
+      let emoteIcon = $('.emote-icon')
       emoteIcon.off()
-      emoteIcon.on("click", function () {
-        // find out what tab we're dealing with
-        if ($(this).parent().parent().attr("class") === 'line-pack-stickers') {
-          // if dealing with line stickers tab, grab src
-          var emote = $(this).attr("src") // + '\n';
-        } else {
-          // otherwise grab title attribute
-          var emote = $(this).attr("title")
-        }
-        // var ta = utils.getTextArea();
-        var ta = $('.channelTextArea-1LDbYG textarea')
-        utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
-        // force the textarea to resize if needed
-        ta[0].dispatchEvent(new Event('input', { bubbles: true }))
+      emoteIcon.on('click', function () {
+        let emote = $(this).parent().parent().hasClass('line-pack-stickers') ? $(this).attr('src') : $(this).attr('title')
+        let ta = utils.getTextArea()
+        utils.insertText(ta[0], ta.val().slice(-1) === ' ' ? ta.val() + emote : ta.val() + ' ' + emote)
+        ta[0].dispatchEvent(new Event('input', { bubbles: true })) // force textarea to resize if it needs to
       })
 
       lineemotes.preview.init()
       lineemotes.categories.init()
-      lineemotes.confirm.init()
+      lineemotes.confirm.initialize()
       lineemotes.menu.resize()
     }
   }
@@ -136,94 +137,29 @@ class Menu {
     }
 
     // var container = `${lineemotes.getStylesheet()}
-    var container = `
-<div id="bda-qem-line-container">
-    <div class="scroller-wrap fade">
-        ${lineemotes.confirm.buildContainer()}
-        <div class="scroller">
-            <div class="emote-menu-inner">
-                ${stickers}
-            </div>
-        </div>
-    </div>
-    ${lineemotes.preview.buildContainer()}
-    ${lineemotes.categories.buildContainer()}
-</div>`
-    return container
+    return containerTemplate({
+      confirm: lineemotes.confirm.buildContainer(),
+      stickers: stickers,
+      preview: lineemotes.preview.buildContainer(),
+      categories: lineemotes.categories.buildContainer()
+    })
   }
   rebuild () {
-    lineemotes.log('Rebuilding container')
+    log('Rebuilding container')
     quickEmoteMenu.lsContainer = this.buildContainer()
   }
   destroy () {
-    // reverting the overriden functions
-    QuickEmoteMenu.prototype.obsCallback = function (elem) {
-      var e = $(elem)
-      if (!settingsCookie["bda-es-9"]) {
-        e.addClass("bda-qme-hidden")
-      } else {
-        e.removeClass("bda-qme-hidden")
-      }
-
-      if (!settingsCookie["bda-es-0"]) { return }
-
-      e.prepend(this.qmeHeader)
-      e.append(this.teContainer)
-      e.append(this.faContainer)
-
-      if (this.lastTab == undefined) {
-        this.lastTab = "bda-qem-favourite"
-      }
-      this.switchQem(this.lastTab)
-    }
-    QuickEmoteMenu.prototype.switchQem = function (id) {
-      var twitch = $("#bda-qem-twitch")
-      var fav = $("#bda-qem-favourite")
-      var emojis = $("#bda-qem-emojis")
-      twitch.removeClass("active")
-      fav.removeClass("active")
-      emojis.removeClass("active")
-
-      $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").hide()
-      $("#bda-qem-favourite-container").hide()
-      $("#bda-qem-twitch-container").hide()
-
-      switch (id) {
-        case "bda-qem-twitch":
-          twitch.addClass("active")
-          $("#bda-qem-twitch-container").show()
-          break
-        case "bda-qem-favourite":
-          fav.addClass("active")
-          $("#bda-qem-favourite-container").show()
-          break
-        case "bda-qem-emojis":
-          emojis.addClass("active")
-          $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").show()
-          $(".emojiPicker-3m1S-j .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus()
-          break
-      }
-      this.lastTab = id
-
-      var emoteIcon = $(".emote-icon")
-      emoteIcon.off()
-      emoteIcon.on("click", function () {
-        var emote = $(this).attr("title")
-        var ta = utils.getTextArea()
-        utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
-      })
-    }
-
-    // setting the last opened tab to emoji tab
-    quickEmoteMenu.lastTab = "bda-qem-emojis"
+    QuickEmoteMenu.prototype.obsCallback = this.restore.obsCallback
+    QuickEmoteMenu.prototype.switchQem = this.restore.switchQem
+    quickEmoteMenu.lastTab = 'bda-qem-emojis' // set the last opened tab to emoji tab
   }
   setWidth (width) {
-    if (width < 344) { width = 344; lineemotes.log("Can't set width less than 344px") }
+    if (width < 344) { width = 344; log("Can't set width less than 344px") }
     lineemotes.storage.set('width', width)
     this.resize()
   }
   setHeight (height) {
-    if (height < 326) { height = 326; lineemotes.log("Can't set height less than 326px") }
+    if (height < 326) { height = 326; log("Can't set height less than 326px") }
     lineemotes.storage.set('height', height)
     this.resize()
   }
@@ -244,7 +180,7 @@ class Menu {
     let width = this.getWidth()
     let height = this.getHeight()
     if (width === null) { this.setWidth(0); return }
-    if (height === null) { lineemotes.menu.setHeight(0); return }
+    if (height === null) { this.setHeight(0); return }
 
     $('#bda-qem-line-container').css('width', width)
     $('#bda-qem-line-container').css('height', height)
@@ -254,7 +190,7 @@ class Menu {
       qem_height = 0
     }
 
-    BdApi.clearCSS('lineemotes-offset');
+    BdApi.clearCSS('lineemotes-offset')
     BdApi.injectCSS('lineemotes-offset', `:root {--bd-les-offset: ${qem_height}px; --bd-les-border-offset:1px; --bd-les-height: ${height}px; --bd-les-width: ${width}px;}`)
   }
   removePack (id) {
@@ -263,8 +199,8 @@ class Menu {
     $(`#bda-qem-line-container .categories-container .item[data-id="${id}"]`).remove()
   }
   appendPack (id) {
-    if (!lineemotes.menu.isOpen()) { return }
-    lineemotes.log('Appending a pack to the current container')
+    if (!this.isOpen()) { return }
+    log('Appending a pack to the current container')
     // append the pack to the current container
     var pack = lineemotes.pack.wrapPack(id)
     $('#bda-qem-line-container .emote-menu-inner').append(pack)
@@ -309,10 +245,10 @@ class Menu {
     $(`#bda-qem-line-container .line-pack[data-id="${id}"] .icon-edit`).on('click', (event) => {
       var pack = $(event.target.parentNode.parentNode.parentNode)
       if (pack.find('.line-pack-header input').length === 0) {
-        var bar = $(event.target.parentNode.parentNode);
-        var header = pack.find('.line-pack-header');
-        var value = pack.find('.line-pack-header').text();
-        header.html(`<input class="line-edit-input" value="${value}"></input>`);
+        var bar = $(event.target.parentNode.parentNode)
+        var header = pack.find('.line-pack-header')
+        var value = pack.find('.line-pack-header').text()
+        header.html(`<input class="line-edit-input" value="${value}"></input>`)
         bar.addClass('visible')
 
         function save(event) {
@@ -328,11 +264,11 @@ class Menu {
             bar.removeClass('visible')
           })
           .on('keydown', (event) => {
-            if ((event.key === 'Escape') || (event.key ==='Enter')) {
-              event.stopPropagation();
-              event.preventDefault();
-              //save(event);
-              event.target.blur();
+            if ((event.key === 'Escape') || (event.key === 'Enter')) {
+              event.stopPropagation()
+              event.preventDefault()
+              // save(event)
+              event.target.blur()
             }
           })
           .focus()

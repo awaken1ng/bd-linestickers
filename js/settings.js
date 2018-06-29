@@ -1,7 +1,9 @@
+const log = require('#/js/logger')
+
 class Settings {
   toggleHide () {
     let checked = lineemotes.storage.get('hideURLs')
-    lineemotes.log(`Toggling hide, was ${checked}`)
+    log(`Toggling hide, was ${checked}`)
     if (!checked) {
       lineemotes.storage.set('hideURLS', true)
       $('#line-settings-hideurl').parent().find('.ui-switch').addClass('checked')

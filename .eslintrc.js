@@ -1,11 +1,14 @@
 module.exports = {
   "extends": "standard",
   "globals": {
-    // Define some global read-only variables
+    // Define some global variables
     "$": false,
     "BdApi": false,
     "bdPluginStorage": false,
     "QuickEmoteMenu": false,
-    "settingsCookie": false
+    "quickEmoteMenu": false,
+    "settingsCookie": false,
+    "utils": false,
+    "Event": false
   }
 };

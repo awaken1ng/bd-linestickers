@@ -1,0 +1,20 @@
+div.add-form(style="opacity: 0; pointer-events: none;")
+  div.labels
+    label(for="line-add-title")= addformTitle
+    label(for="line-add-length")= addformLength
+    label(for="line-add-id")= addformId
+
+  div.inputs
+    input#line-add-title(placeholder=addformTitle)
+    input#line-add-length(onkeypress="return event.charCode >= 48 && event.charCode <= 57", placeholder=addformLength, value=40)
+    input#line-add-id(onkeypress="return event.charCode >= 48 && event.charCode <= 57", placeholder=addformId)
+  
+  button.line-add-button.ui-button.filled.brand.small
+    div.ui-button-contents= addformAdd
+
+div.categories-container
+  div.categories-wrapper
+    div.item.add-pack-button
+      svg.add-pack(width=20, height=20, viewBox="0 0 24 24")
+        path(d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z")
+    != categories

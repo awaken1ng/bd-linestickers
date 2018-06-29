@@ -34,4 +34,5 @@ class L10N {
   }
 }
 
-module.exports = L10N
+let l10n = new L10N()
+module.exports = l10n
