@@ -9,6 +9,7 @@ module.exports = {
     "quickEmoteMenu": false,
     "settingsCookie": false,
     "utils": false,
-    "Event": false
+    "Event": false,
+    "NodeFilter": false
   }
 };
