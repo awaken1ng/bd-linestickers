@@ -353,15 +353,14 @@ lineemotes.menu.init = function () {
             emoteIcon.off();
             emoteIcon.on("click", function() {
                 // find out what tab we're dealing with
-                if ($(this).parent().parent().attr("class") === 'line-pack-stickers') {
+                if ($(this).parent().parent().hasClass("line-pack-stickers")) {
                     // if dealing with line stickers tab, grab src
                     var emote = $(this).attr("src") // + '\n';
                 } else {
                     // otherwise grab title attribute
                     var emote = $(this).attr("title");
                 }
-                // var ta = utils.getTextArea();
-                var ta = $('.channelTextArea-1LDbYG textarea');
+                var ta = utils.getTextArea();
                 utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
                 // force the textarea to resize if needed
                 ta[0].dispatchEvent(new Event('input', { bubbles: true }));
@@ -547,17 +546,17 @@ lineemotes.menu.appendPack = function(id) {
         .mouseleave(function(e) { lineemotes.preview.hide(); })
         .on("click", function() {
             // find out what tab we're dealing with
-            if ($(this).parent().parent().attr("class") === 'line-pack-stickers') {
+            if ($(this).parent().parent().hasClass("line-pack-stickers")) {
                 // if dealing with line stickers tab, grab src
-                var emote = $(this).attr("src");
+                var emote = $(this).attr("src") // + '\n';
             } else {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".chat form textarea");
-            var text = ta.val().slice(-1) == " " ? emote : " " + emote
-            ta.focus();
-            document.execCommand("insertText", false, text);
+            var ta = utils.getTextArea();
+            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
+            // force the textarea to resize if needed
+            ta[0].dispatchEvent(new Event('input', { bubbles: true }));
         });
 
     // enable deletion
@@ -1280,4 +1279,4 @@ var stylesheet = `#bda-qem-line-container .icon-edit {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-lineemotes.prototype.getVersion = () => "0.6.9с";
+lineemotes.prototype.getVersion = () => "0.6.9d";
