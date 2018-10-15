@@ -113,8 +113,8 @@ lineemotes.menu.init = function () {
                     // otherwise grab title attribute
                     var emote = $(this).attr("title");
                 }
-                var ta = utils.getTextArea();
-                utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
+                var ta = Utils.getTextArea();
+                Utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
                 // force the textarea to resize if needed
                 ta[0].dispatchEvent(new Event('input', { bubbles: true }));
                 
@@ -210,8 +210,8 @@ lineemotes.menu.unload = function () {
         emoteIcon.off();
         emoteIcon.on("click", function () {
             var emote = $(this).attr("title");
-            var ta = utils.getTextArea();
-            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+            var ta = Utils.getTextArea();
+            Utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
         });
     };
 
@@ -306,8 +306,8 @@ lineemotes.menu.appendPack = function(id) {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = utils.getTextArea();
-            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
+            var ta = Utils.getTextArea();
+            Utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
             // force the textarea to resize if needed
             ta[0].dispatchEvent(new Event('input', { bubbles: true }));
         });
