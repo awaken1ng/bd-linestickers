@@ -10,13 +10,12 @@ class Pack {
   getPack (title, stickerId, length) {
     return {
       title: title,
-      starting_id: Number(stickerId),
+      startingId: Number(stickerId),
       length: Number(length)
     }
   }
   addPack (title, stickerId, length) {
     function parseAsInteger (name, variable) {
-      console.log(variable, typeof variable)
       if (!Number.isInteger(variable)) {
         if (typeof variable !== 'string') { throw Error(`Parsing: ${name} is not a number nor string`) }
         variable = parseInt(variable, 10)

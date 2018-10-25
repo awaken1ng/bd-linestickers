@@ -2,21 +2,20 @@ const about = require('#/package.json')
 const log = require('#/js/logger')
 
 class Settings {
-  constructor (storage) { this.storage = storage }
   toggleHide () {
-    let checked = this.storage.get('hideURLs')
+    let checked = window[about.id].storage.get('hideURLs')
     if (checked) {
       log(`Setting URL hide to 'false', was '${checked}'`)
-      this.storage.set('hideURLs', false) // BD storage saves it as `null` instead
+      window[about.id].storage.set('hideURLs', false) // BD storage saves it as `null` instead
       $('#line-settings-hideurl').parent().find('.ui-switch').removeClass('checked')
     } else {
       log(`Setting URL hide to 'true', was '${checked}'`)
-      this.storage.set('hideURLs', true)
+      window[about.id].storage.set('hideURLs', true)
       $('#line-settings-hideurl').parent().find('.ui-switch').addClass('checked')
     }
   }
   getPanel () {
-    let hideURLs = this.storage.get('hideURLs')
+    let hideURLs = window[about.id].storage.get('hideURLs')
 
     let toggle = document.createElement('label')
     toggle.classList.add('ui-switch-wrapper', 'ui-flex-child')

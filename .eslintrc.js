@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = {  
   "extends": "standard",
   "globals": {
     // Define some global variables
@@ -8,8 +8,8 @@ module.exports = {
     "QuickEmoteMenu": false,
     "quickEmoteMenu": false,
     "settingsCookie": false,
-    "utils": false,
+    "Utils": false,
     "Event": false,
     "NodeFilter": false
   }
-};
+}

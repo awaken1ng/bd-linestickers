@@ -1,6 +1,6 @@
-const Categories = require('#/js/_categories')
+const Categories = require('#/js/categories')
 const Menu = require('#/js/menu-betterdiscord')
-const Preview = require('#/js/_preview')
+const Preview = require('#/js/preview')
 const Storage = require('#/js/storage-betterdiscord')
 const Pack = require('#/js/pack')
 const EditBar = require('#/js/editbar')
@@ -15,7 +15,7 @@ const log = require('#/js/logger')
 module.exports = class {
   constructor () {
     this.storage = new Storage()
-    this.settings = new Settings(this.storage)
+    this.settings = new Settings()
     this.categories = new Categories()
     this.menu = new Menu()
     this.preview = new Preview()

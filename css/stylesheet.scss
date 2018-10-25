@@ -66,6 +66,9 @@ $dark-border-color: #2b2b2b;
       background-color: #202020 !important;
     }
 
+    .categories-container .categories-wrapper {
+      background-color: #353535;
+    }
     .preview-container .preview-wrapper {
       background-color: #353535;
       border-color: $dark-border-color;
@@ -75,6 +78,9 @@ $dark-border-color: #2b2b2b;
       background-color: rgba(35, 35, 35, 0.8);
     }
 
+    .add-form {
+      background-color: #353535;
+    }
     .add-pack {
       opacity: 1;
     }
@@ -156,6 +162,7 @@ $dark-border-color: #2b2b2b;
       clear: right;
       overflow: hidden;
       white-space: nowrap;
+      background-color: #fff;
 
       .item:first-of-type {
         margin-left: 15px;

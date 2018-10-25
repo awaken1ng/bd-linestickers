@@ -1,14 +1,18 @@
 const log = require('#/js/logger')
+const about = require('#/package.json')
 
 class Storage {
+  initialize () { throw Error('Not implemented') }
+  get () { throw Error('Not implemented') }
+  set () { throw Error('Not implemented') }
   getPack (id) {
     let stickers = this.get('stickers')
     for (let i = 0; i < stickers.length; i++) {
-      if (stickers[i].starting_id === id) return stickers[i]
+      if (stickers[i].startingId === id) { return stickers[i] }
     }
   }
   addPack (pack) {
-    if (this.getPack(pack.starting_id)) {
+    if (this.getPack(pack.startingId)) {
       log('Pack is already in storage, aborting')
       return
     }
@@ -20,10 +24,12 @@ class Storage {
   deletePack (id) {
     let stickers = this.get('stickers')
     for (let i = 0; i < stickers.length; i++) {
+      if (stickers[i]['startingId'] !== id) { continue }
+
       log(`Deleting pack ${id} - ${stickers[i]['title']}`)
       stickers.splice(i, 1)
       this.set('stickers', stickers)
-      lineemotes.menu.rebuild()
+      window[about.id].menu.rebuild()
       return
     }
     log(`Pack ${id} was not found in storage during deletion`)
@@ -43,10 +49,10 @@ class Storage {
     }
     let stickers = this.get('stickers')
     for (let i = 0; i < stickers.length; i++) {
-      if (stickers[i].starting_id === id) {
+      if (stickers[i].startingId === id) {
         stickers[i].title = newTitle
         this.set('stickers', stickers)
-        lineemotes.menu.rebuild()
+        window[about.id].menu.rebuild()
         return
       }
     }

@@ -1,3 +1,4 @@
+const about = require('#/package.json')
 const log = require('#/js/logger')
 const l10n = require('#/js/l10n')
 const containerTemplate = require('#/templates/menu-container')
@@ -27,7 +28,7 @@ class Menu {
       } else if (this.locale !== document.children[0].getAttribute('lang')) {
         log('Language changed, rebuilding container to reflect changes')
         this.locale = l10n.getCurrentLocale()
-        this.lsContainer = lineemotes.menu.buildContainer()
+        this.lsContainer = window[about.id].menu.buildContainer()
       }
 
       let qmeHeader = '<div id="bda-qem">'
@@ -115,33 +116,29 @@ class Menu {
 
       let emoteIcon = $('.emote-icon')
       emoteIcon.off()
-      emoteIcon.on('click', function () {
-        let emote = $(this).parent().parent().hasClass('line-pack-stickers') ? $(this).attr('src') : $(this).attr('title')
-        let ta = utils.getTextArea()
-        utils.insertText(ta[0], ta.val().slice(-1) === ' ' ? ta.val() + emote : ta.val() + ' ' + emote)
-        ta[0].dispatchEvent(new Event('input', { bubbles: true })) // force textarea to resize if it needs to
+      emoteIcon.on('click', function (event) {
+        window[about.id].menu.onEmoteClick(event.target)
       })
 
-      lineemotes.preview.init()
-      lineemotes.categories.init()
-      lineemotes.confirm.initialize()
-      lineemotes.menu.resize()
+      window[about.id].preview.initialize()
+      window[about.id].categories.initialize()
+      window[about.id].confirm.initializeAll()
+      window[about.id].menu.resize()
     }
   }
   buildContainer () {
     var stickers = ''
-    let storage = lineemotes.storage.get('stickers')
+    let storage = window[about.id].storage.get('stickers')
 
     for (var pack = 0; pack < storage.length; ++pack) {
-      stickers += lineemotes.pack.wrapPack(storage[pack]['starting_id'])
+      stickers += window[about.id].pack.wrapPack(storage[pack]['startingId'])
     }
 
-    // var container = `${lineemotes.getStylesheet()}
     return containerTemplate({
-      confirm: lineemotes.confirm.buildContainer(),
+      confirm: window[about.id].confirm.buildContainer(),
       stickers: stickers,
-      preview: lineemotes.preview.buildContainer(),
-      categories: lineemotes.categories.buildContainer()
+      preview: window[about.id].preview.buildContainer(),
+      categories: window[about.id].categories.buildContainer()
     })
   }
   rebuild () {
@@ -155,20 +152,20 @@ class Menu {
   }
   setWidth (width) {
     if (width < 344) { width = 344; log("Can't set width less than 344px") }
-    lineemotes.storage.set('width', width)
+    window[about.id].storage.set('width', width)
     this.resize()
   }
   setHeight (height) {
     if (height < 326) { height = 326; log("Can't set height less than 326px") }
-    lineemotes.storage.set('height', height)
+    window[about.id].storage.set('height', height)
     this.resize()
   }
   setSize (width, height) {
     this.setWidth(width)
     this.setHeight(height)
   }
-  getWidth () { return lineemotes.storage.get('width') }
-  getHeight () { return lineemotes.storage.get('height') }
+  getWidth () { return window[about.id].storage.get('width') }
+  getHeight () { return window[about.id].storage.get('height') }
   getSize () {
     return {
       width: this.getWidth(),
@@ -185,13 +182,13 @@ class Menu {
     $('#bda-qem-line-container').css('width', width)
     $('#bda-qem-line-container').css('height', height)
 
-    var qem_height = 30
-    if ((!settingsCookie["bda-es-0"]) && (!settingsCookie["bda-es-9"])) {
-      qem_height = 0
+    let qemHeight = 30
+    if ((!settingsCookie['bda-es-0']) && (!settingsCookie['bda-es-9'])) {
+      qemHeight = 0
     }
 
     BdApi.clearCSS('lineemotes-offset')
-    BdApi.injectCSS('lineemotes-offset', `:root {--bd-les-offset: ${qem_height}px; --bd-les-border-offset:1px; --bd-les-height: ${height}px; --bd-les-width: ${width}px;}`)
+    BdApi.injectCSS('lineemotes-offset', `:root {--bd-les-offset: ${qemHeight}px; --bd-les-border-offset:1px; --bd-les-height: ${height}px; --bd-les-width: ${width}px;}`)
   }
   removePack (id) {
     // remove sticker pack from current container
@@ -202,78 +199,29 @@ class Menu {
     if (!this.isOpen()) { return }
     log('Appending a pack to the current container')
     // append the pack to the current container
-    var pack = lineemotes.pack.wrapPack(id)
+    var pack = window[about.id].pack.wrapPack(id)
     $('#bda-qem-line-container .emote-menu-inner').append(pack)
 
     // append the pack to navigation bar below
-    var pack = lineemotes.storage.getPack(id)
-    var id = pack['starting_id']
+    var pack = window[about.id].storage.getPack(id)
+    var id = pack.startingId
     var position = $('#bda-qem-line-container .categories-wrapper .item').length - 1
     var category = `<div class="item" data-id="${id}" onclick="$('#bda-qem-line-container .line-pack')[${position}].scrollIntoView()" style='background-image: url("https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/${id}/android/sticker.png;compress=true")'></div>`
     $('#bda-qem-line-container .categories-wrapper').append(category)
 
     // enable preview on the added pack
     // make stickers copy url on a click
-    $(`#bda-qem-line-container .line-pack[data-id="${id}"] img`)
-      .mouseenter(function (e) { lineemotes.preview.show(e.target.src) })
-      .mouseleave(function (e) { lineemotes.preview.hide() })
-      .on("click", function () {
-        // find out what tab we're dealing with
-        if ($(this).parent().parent().attr("class") === 'line-pack-stickers') {
-          // if dealing with line stickers tab, grab src
-          var emote = $(this).attr("src")
-        } else {
-          // otherwise grab title attribute
-          var emote = $(this).attr("title")
-        }
-        var ta = $(".chat form textarea")
-        var text = ta.val().slice(-1) == " " ? emote : " " + emote
-        ta.focus()
-        document.execCommand("insertText", false, text)
-      })
+    let sticker = $(`#bda-qem-line-container .line-pack[data-id="${id}"] img`)
+    sticker
+      .mouseenter(function (e) { window[about.id].preview.show(e.target.src) })
+      .mouseleave(function (e) { window[about.id].preview.hide() })
+      .on('click', () => this.onStickerClick(sticker))
 
     // enable deletion
-    $(`#bda-qem-line-container .line-pack[data-id="${id}"] .icon-plus-cross`).on('click', (event) => {
-      var id = $(event.target.parentNode.parentNode.parentNode).attr('data-id')
-      $('#bda-qem-line-container .confirm .yes').attr(
-        'onclick',
-        `lineemotes.storage.deletePack(${id}); lineemotes.menu.removePack(${id}); lineemotes.confirm.hide();`)
-      lineemotes.confirm.show()
-    })
+    window[about.id].confirm.initializeOne(id)
 
     // enable editing
-    $(`#bda-qem-line-container .line-pack[data-id="${id}"] .icon-edit`).on('click', (event) => {
-      var pack = $(event.target.parentNode.parentNode.parentNode)
-      if (pack.find('.line-pack-header input').length === 0) {
-        var bar = $(event.target.parentNode.parentNode)
-        var header = pack.find('.line-pack-header')
-        var value = pack.find('.line-pack-header').text()
-        header.html(`<input class="line-edit-input" value="${value}"></input>`)
-        bar.addClass('visible')
-
-        function save(event) {
-          var value = $(event.target).val()
-          var id = $(event.target.parentNode.parentNode).attr('data-id')
-          lineemotes.storage.renamePack(id, value)
-          $(event.target.parentNode).html(value)
-        }
-
-        header.find('input')
-          .on('blur', (event) => {
-            save(event)
-            bar.removeClass('visible')
-          })
-          .on('keydown', (event) => {
-            if ((event.key === 'Escape') || (event.key === 'Enter')) {
-              event.stopPropagation()
-              event.preventDefault()
-              // save(event)
-              event.target.blur()
-            }
-          })
-          .focus()
-      }
-    })
+    window[about.id].editbar.initializeOne(id)
   }
   isOpen () {
     // Check if the LINE tab is currently open and visible
@@ -283,6 +231,15 @@ class Menu {
       if (display !== 'none') { return true }
     }
     return false
+  }
+  onEmoteClick (element) {
+    let container = $(element).parent().parent()
+    let emoteElement = $(element)
+    let emote = container.hasClass('line-pack-stickers') ? emoteElement.attr('src') : emoteElement.attr('title')
+
+    let ta = Utils.getTextArea()
+    Utils.insertText(ta[0], ta.val().slice(-1) === ' ' ? ta.val() + emote : ta.val() + ' ' + emote)
+    ta[0].dispatchEvent(new Event('input', { bubbles: true })) // force textarea to resize if it needs to
   }
 }
 

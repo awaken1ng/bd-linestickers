@@ -1,4 +1,4 @@
-div.line-pack(data-id=starting_id)
+div.line-pack(data-id=startingId)
   div.line-editbar
     span.item
       svg.icon-plus-cross(width=18, height=18, style="opacity:0.6")
@@ -9,12 +9,10 @@ div.line-pack(data-id=starting_id)
     span.item
       svg.icon-edit(width=18, height=18)
         path(fill="#737F8D", fill-rule="evenodd", d="M3 14v-2.5l7.88-7.85c.19-.2.51-.2.71 0l1.76 1.76c.2.2.2.51 0 .71L5.47 14H3zm12 0H7.5l2-2H15v2z")
-    span.item(display="display: none; text-align: center; width: 30px; vertical-align: middle; line-height: 23.5px; color: #d1d1d1;")
-      span.icon-edit-len LEN
 
   div.line-pack-header= title
 
   div.line-pack-stickers
-    - for (let id = starting_id; id <= starting_id + length; id++)
+    - for (let id = startingId; id < startingId + length; id++)
       div.emote-container
         img.emote-icon(src="https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/" + id + "/android/sticker.png;compress=true")

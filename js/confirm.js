@@ -1,3 +1,4 @@
+const about = require('#/package.json')
 const l10n = require('#/js/l10n')
 const template = require('#/templates/confirm')
 
@@ -9,15 +10,18 @@ class Confirm {
       no: l10n.getToken('no')
     })
   }
-  initialize () {
-    $('#bda-qem-line-container .line-editbar .icon-plus-cross').on('click', (event) => {
-      var id = $(event.target.parentNode.parentNode.parentNode).attr('data-id')
-      $('#bda-qem-line-container .confirm .no').attr('onclick', 'lineemotes.confirm.hide();')
-      $('#bda-qem-line-container .confirm .yes').attr(
-        'onclick',
-        `lineemotes.storage.deletePack(${id}); lineemotes.menu.removePack(${id}); lineemotes.confirm.hide();`)
-      this.show()
-    })
+  fire (event) {
+    let id = $(event.currentTarget.parentNode.parentNode.parentNode).attr('data-id')
+    $('#bda-qem-line-container .confirm .no').attr('onclick', `window['${about.id}'].confirm.hide()`)
+    $('#bda-qem-line-container .confirm .yes').attr('onclick',
+      `window['${about.id}'].storage.deletePack(${id}); window['${about.id}'].menu.removePack(${id}); window['${about.id}'].confirm.hide()`)
+    this.show()
+  }
+  initializeAll () {
+    $('#bda-qem-line-container .line-editbar .icon-plus-cross').on('click', (event) => this.fire(event))
+  }
+  initializeOne (id) {
+    $(`#bda-qem-line-container .line-pack[data-id="${id}"] .icon-plus-cross`).on('click', (event) => this.fire(event))
   }
   show () {
     // $('#bda-qem-line-container .confirm').show()
