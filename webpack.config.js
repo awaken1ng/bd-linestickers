@@ -1,11 +1,10 @@
 const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 const about = require('./package.json')
 
 module.exports = (_, argv) => {
-  // Automatically copy output directly into BetterDiscord plugins
+  // Output directly into BetterDiscord plugins
   // process.env.APPDATA: 'C:\\Users\\user\\AppData\\Roaming', Windows only
   // process.env.HOME: '/home/user' on Linux, '/Users/user' on MacOS, Linux and MacOS only
   let appdata = process.env.APPDATA || path.resolve(process.env.HOME, (process.platform === 'darwin' ? 'Library/Preferences' : '.config'))
