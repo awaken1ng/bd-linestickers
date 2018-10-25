@@ -12,13 +12,24 @@ Extends BetterDiscord emote menu to add a tab with LINE stickers to it
 
 ## Installation
 
-* Install [BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)
-* Install the plugin
-	* Open the folder at `C:\Users\<user>\AppData\Roaming\BetterDiscord\plugins` by navigating there via File Explorer of your choice
-  * Drop the plugin [`lineemotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/dist/lineemotes.plugin.js) off there
-*  Restart Discord (*Ctrl + R or a method of your choice*)
-* Make sure the plugin is enabled
-  * Open `User Settings` - `BetterDiscord` - `Plugins`, you should see plugin in the list, enable it by checking the box
+* Install [Bandaged BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)
+* Install the plugin by using one of the following methods:
+  * Downloading it:
+    * Open the the plugin folder:
+      * using the button on plugins tab or
+      * opening it with your file manager at:
+        * Windows: `C:\Users\<user>\AppData\Roaming\BetterDiscord\plugins`
+        * Linux: `/home/<user>/.config/BetterDiscord/plugins/`
+        * MacOS: `/Users/<user>/Library/Preferences/BetterDiscord/plugins`
+    * Download the plugin and copy it there
+  * Building it yourself
+    * Clone the repository and run the following commands:
+      * `npm install`
+      * `npm build`
+* Make sure the plugin is enabled:
+  * Open `User Settings` - `BetterDiscord` - `Plugins`, 
+  * If you don't see the plugin in the list, try restarting Discord (*Ctrl + R or a method of your choice*)
+  * Enable it
 * Open the Emote menu, you should see a **LINE** tab in there
 
 ## Removing or renaming stickers

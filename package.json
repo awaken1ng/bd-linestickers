@@ -1,20 +1,32 @@
 {
+  "id": "lineemotes",
   "name": "bd-linestickers",
-  "version": "0.6.9e",
+  "prettyName": "LINE Stickers",
+  "description": "Extends BetterDiscord emote menu to add LINE stickers tab.",
+  "version": "0.7.0",
   "scripts": {
-    "build": "gulp build --color",
-    "build:css": "gulp build:css --color",
-    "build:watch": "gulp build:watch --color"
+    "build": "webpack --mode=none",
+    "build:watch": "webpack --watch --mode=development"
   },
   "author": "Awakening",
   "private": true,
   "contributors": [],
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-concat-util": "^0.5.5",
-    "gulp-sass": "^3.1.0",
-    "pump": "^1.0.2"
+    "copy-webpack-plugin": "^4.5.4",
+    "css-loader": "^0.28.11",
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "node-sass": "^4.9.4",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^7.1.0",
+    "to-string-loader": "^1.1.5",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2"
   }
 }
