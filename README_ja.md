@@ -7,7 +7,7 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
 
 ## インストール
 
-* [Bandaged BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)をインストールする。
+* [Bandaged BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)をインストールする
 * プラグインをインストールする:
   * ダウンロード:
     * BetterDiscordのプラグインフォルダを開く:
@@ -24,8 +24,8 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
 * プラグインを有効化する:
   * `ユーザー設定` - `BetterDiscord` - `Plugins` を開く
   * __Line Stickers__ がプラグインリストにいないの場合はDiscordを再起動試してみて (Ctrl + R で再起動します)
-  * プラグインを有効化します。
-* 絵文字メニューを開けば __LINE__ タブが追加されているはずです。
+  * プラグインを有効化します
+* 絵文字メニューを開けば __LINE__ タブが追加されているはずです
 
 
 ## パックを追加する

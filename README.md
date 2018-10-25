@@ -22,12 +22,12 @@ Extends BetterDiscord emote menu to add a tab with LINE stickers to it
         * Linux: `/home/<user>/.config/BetterDiscord/plugins/`
         * MacOS: `/Users/<user>/Library/Preferences/BetterDiscord/plugins`
     * [Download the plugin](https://github.com/awaken1ng/bd-linestickers/releases) and copy it there
-  * Building it yourself
+  * Building it yourself:
     * Clone the repository and run the following commands:
       * `npm install`
       * `npm build`
 * Make sure the plugin is enabled:
-  * Open `User Settings` - `BetterDiscord` - `Plugins`, 
+  * Open `User Settings` - `BetterDiscord` - `Plugins`
   * If you don't see the plugin in the list, try restarting Discord (*Ctrl + R or a method of your choice*)
   * Enable it
 * Open the Emote menu, you should see a **LINE** tab in there
