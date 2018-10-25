@@ -7,13 +7,24 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
 
 ## インストール
 
-* [BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)をインストールする。
-* プラグインをインストール
-	* BetterDiscordのプラグインフォルダ(`%appdata%\BetterDiscord\plugins`)をエクスプローラーで開く
-  * [`lineemotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/dist/lineemotes.plugin.js)を保存してプラグインフォルダに入れる
-*  Discordを再起動 (Ctrl + R で再起動します)
-* プラグインを有効化する
-  * `ユーザー設定` - `BetterDiscord` - `Plugins`を開き、プラグインリストから __Line Stickers__ を有効化します。
+* [Bandaged BetterDiscord](https://github.com/rauenzi/BetterDiscordApp)をインストールする。
+* プラグインをインストールする:
+  * ダウンロード:
+    * BetterDiscordのプラグインフォルダを開く:
+      * プラグインパネルに `Open Plugin Folder` で
+      * ファイルマネージャで: 
+        * Windows: `C:\Users\<ユーザー>\AppData\Roaming\BetterDiscord\plugins`
+        * Linux: `/home/<ユーザー>/.config/BetterDiscord/plugins`
+        * MacOS: `/Users/<ユーザー>/Library/Preferences/BetterDiscord/plugins`
+    * プラグインを保存してプラグインフォルダに入れる
+  * 自分でコンパイル:
+    * リポジトリを保存して次のコマンドを実行する:
+      * `npm install`
+      * `npm build`
+* プラグインを有効化する:
+  * `ユーザー設定` - `BetterDiscord` - `Plugins` を開く
+  * __Line Stickers__ がプラグインリストにいないの場合はDiscordを再起動試してみて (Ctrl + R で再起動します)
+  * プラグインを有効化します。
 * 絵文字メニューを開けば __LINE__ タブが追加されているはずです。
 
 
