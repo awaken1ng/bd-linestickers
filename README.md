@@ -25,7 +25,7 @@ Extends BetterDiscord emote menu to add a tab with LINE stickers to it
   * Building it yourself:
     * Clone the repository and run the following commands:
       * `npm install`
-      * `npm build`
+      * `npm run build`
 * Make sure the plugin is enabled:
   * Open `User Settings` - `BetterDiscord` - `Plugins`
   * If you don't see the plugin in the list, try restarting Discord (*Ctrl + R or a method of your choice*)

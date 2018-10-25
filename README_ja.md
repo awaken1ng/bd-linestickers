@@ -20,7 +20,7 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
   * 自分でコンパイル:
     * リポジトリを保存して次のコマンドを実行する:
       * `npm install`
-      * `npm build`
+      * `npm run build`
 * プラグインを有効化する:
   * `ユーザー設定` - `BetterDiscord` - `Plugins` を開く
   * __Line Stickers__ がプラグインリストにいないの場合はDiscordを再起動試してみて (Ctrl + R で再起動します)
