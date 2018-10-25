@@ -16,7 +16,7 @@ BetterDiscordの絵文字欄にLINEスタンプを追加するプラグインで
         * Windows: `C:\Users\<ユーザー>\AppData\Roaming\BetterDiscord\plugins`
         * Linux: `/home/<ユーザー>/.config/BetterDiscord/plugins`
         * MacOS: `/Users/<ユーザー>/Library/Preferences/BetterDiscord/plugins`
-    * プラグインを保存してプラグインフォルダに入れる
+    * [プラグインを保存して](https://github.com/awaken1ng/bd-linestickers/releases)プラグインフォルダに入れる
   * 自分でコンパイル:
     * リポジトリを保存して次のコマンドを実行する:
       * `npm install`
