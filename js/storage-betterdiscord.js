@@ -1,6 +1,5 @@
 const Base = require('#/js/storage-base')
 const about = require('#/package.json')
-const log = require('#/js/logger')
 const migrate = require('#/js/storage-migrate')
 
 class Storage extends Base {
