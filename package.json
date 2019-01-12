@@ -3,7 +3,7 @@
   "name": "bd-linestickers",
   "prettyName": "LINE Stickers",
   "description": "Extends BetterDiscord emote menu to add LINE stickers tab.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "scripts": {
     "build": "webpack --mode=none",
     "build:watch": "webpack --watch --mode=development"
