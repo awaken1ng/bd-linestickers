@@ -3,37 +3,37 @@
 // @namespace   lineappendstring
 // @description Automatic generation of append string for BetterDiscord plugin
 // @include     https://store.line.me/stickershop/product/*
-// @require     https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
-// @version     0.3.6
+// @version     0.4.0
 // @grant       none
 // ==/UserScript==
 
-var title = $('.mdCMN08Ttl').text()
-var firstStickerID = $('.mdCMN09Image').first().css('background-image').match(/sticker\/(\d+)/)[1]
-var length = $('.mdCMN09Li').length.toString()
-var appendString = 'lineemotes.appendPack(`' + title + '`, ' + firstStickerID + ', ' + length + ')'
-
-var href = window.location.pathname.split('/')
-var locale = href[href.length - 1]
-
-var strings
-if (locale === 'ja') {
-  strings = {
-    'title': 'タイトル',
-    'count': 'スタンプの数',
-    'firstID': '最初のスタンプID',
-    'append': '追加のコマンド'
-  }
-} else {
-  strings = {
-    'title': 'Title',
-    'count': 'Sticker count',
-    'firstID': 'First sticker ID',
-    'append': 'Console command'
+function getStrings () {
+  let href = window.location.pathname.split('/')
+  let locale = href[href.length - 1]
+  if (locale === 'ja') {
+    return {
+      'title': 'タイトル',
+      'count': 'スタンプの数',
+      'firstID': '最初のスタンプID',
+      'append': '追加のコマンド'
+    }
+  } else {
+  	return {
+      'title': 'Title',
+      'count': 'Sticker count',
+      'firstID': 'First sticker ID',
+      'append': 'Console command'
+    }
   }
 }
 
-var inlineCSS = `
+
+let title = document.querySelector('.mdCMN38Item01Ttl').innerText
+let firstStickerID = document.querySelector('.mdCMN09Image').style['background-image'].match(/sticker\/(\d+)/)[1]
+let length = document.querySelectorAll('.mdCMN09Li').length
+let append_string = 'lineemotes.appendPack(`' + title + '`, ' + firstStickerID + ', ' + length + ')'
+let strings = getStrings()
+let inlineCSS = `
 background: #2e3136;
 padding: 1em;
 -webkit-border-radius: 3px;
@@ -43,18 +43,25 @@ line-height: 16px;
 color: rgba(255,255,255,.7);
 margin: 10px 0;`
 
-console.log(`
-${strings['title']}: ${title}
+// Output to console
+console.log(
+`${strings['title']}: ${title}
 ${strings['firstID']}: ${firstStickerID}
 ${strings['count']}: ${length}
 ${strings['append']}:
-${appendString}`)
+${append_string}`)
 
-$('.mdCMN08Txt').append(`
-<p style='${inlineCSS}'>
-${strings['title']}: ${title}<br>
-${strings['firstID']}: ${firstStickerID}<br>
-${strings['count']}: ${length}<br>
-${strings['append']}: <br>
-${appendString}
-</p>`)
+// Output on page
+let output = document.createElement('p')
+output.appendChild(document.createTextNode(`${strings['title']}: ${title}`))
+output.appendChild(document.createElement('br'))
+output.appendChild(document.createTextNode(`${strings['firstID']}: ${firstStickerID}`))
+output.appendChild(document.createElement('br'))
+output.appendChild(document.createTextNode(`${strings['count']}: ${length}`))
+output.appendChild(document.createElement('br'))
+output.appendChild(document.createTextNode(`${strings['append']}:`))
+output.appendChild(document.createElement('br'))
+output.appendChild(document.createTextNode(`${append_string}`))
+output.style = inlineCSS
+
+document.querySelector('.mdCMN38Item01').appendChild(output)
